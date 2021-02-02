@@ -11,11 +11,21 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(title: Text('Main Page')),
       body: Center(
-        child: RaisedButton(
-          child: Text('Sign Out'),
-          onPressed: () {
-            AuthServices.signOut();
-          },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            BlocBuilder<UserBloc, UserState>(
+              builder: (_, userState) => (userState is UserLoaded)
+                  ? Text(userState.user.name)
+                  : SizedBox(),
+            ),
+            RaisedButton(
+              child: Text('Sign Out'),
+              onPressed: () {
+                AuthServices.signOut();
+              },
+            ),
+          ],
         ),
       ),
     );
