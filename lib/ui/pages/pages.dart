@@ -1,4 +1,5 @@
 import 'package:bwa_flutix/shared/shared.dart';
+import 'package:bwa_flutix/ui/widgets/widgets.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
