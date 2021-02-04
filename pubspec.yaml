@@ -25,9 +25,12 @@ dependencies:
     sdk: flutter
   cloud_firestore: ^0.13.4+2
   cupertino_icons: ^1.0.0
+  email_validator: ^1.0.4
   equatable: ^1.1.1
   firebase_auth: ^0.15.5+3
+  flushbar: ^1.10.0
   flutter_bloc: ^3.2.0
+  flutter_spinkit: ^4.1.2+1
   google_fonts: ^0.3.10
   provider: ^4.0.4
 
