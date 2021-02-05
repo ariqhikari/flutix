@@ -32,7 +32,7 @@ class _MainPageState extends State<MainPage> {
               });
             },
             children: [
-              Center(child: Text('New Movie')),
+              MoviePage(),
               Center(child: Text('My Tickets')),
             ],
           ),
@@ -45,6 +45,9 @@ class _MainPageState extends State<MainPage> {
               margin: EdgeInsets.only(bottom: 42),
               child: FloatingActionButton(
                 elevation: 0,
+                focusElevation: 0,
+                highlightElevation: 0,
+                hoverElevation: 0,
                 backgroundColor: accentColor2,
                 child: Container(
                   width: 26,
@@ -55,7 +58,10 @@ class _MainPageState extends State<MainPage> {
                     color: Colors.black.withOpacity(0.54),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  context.bloc<UserBloc>().add(SignOut());
+                  AuthServices.signOut();
+                },
               ),
             ),
           ),

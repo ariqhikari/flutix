@@ -108,6 +108,9 @@ class _SignInPageState extends State<SignInPage> {
                           ? SpinKitFadingCircle(color: mainColor)
                           : FloatingActionButton(
                               elevation: 0,
+                              focusElevation: 0,
+                              highlightElevation: 0,
+                              hoverElevation: 0,
                               backgroundColor: (isEmailValid && isPasswordValid)
                                   ? mainColor
                                   : Color(0xFFE4E4E4),
