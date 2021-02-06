@@ -13,11 +13,13 @@ class _SignInPageState extends State<SignInPage> {
   bool isPasswordValid = false;
   bool isSigningIn = false;
 
+  Color colorTheme = accentColor2;
+
   @override
   Widget build(BuildContext context) {
     context.bloc<ThemeBloc>().add(
           ChangeTheme(
-            ThemeData().copyWith(primaryColor: accentColor2),
+            ThemeData().copyWith(primaryColor: colorTheme),
           ),
         );
 
@@ -60,6 +62,12 @@ class _SignInPageState extends State<SignInPage> {
                     onChanged: (text) {
                       setState(() {
                         isEmailValid = EmailValidator.validate(text);
+
+                        if (!isEmailValid) {
+                          colorTheme = Color(0xFFFF5C83);
+                        } else {
+                          colorTheme = accentColor2;
+                        }
                       });
                     },
                   ),
@@ -77,6 +85,12 @@ class _SignInPageState extends State<SignInPage> {
                     onChanged: (text) {
                       setState(() {
                         isPasswordValid = text.length >= 6;
+
+                        if (!isPasswordValid) {
+                          colorTheme = Color(0xFFFF5C83);
+                        } else {
+                          colorTheme = accentColor2;
+                        }
                       });
                     },
                   ),
