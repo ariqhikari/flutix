@@ -15,11 +15,6 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController retypePasswordController = TextEditingController();
 
-  bool isNameValid = false;
-  bool isEmailValid = false;
-  bool isPasswordValid = false;
-  bool isRetypePasswordValid = false;
-
   Color colorTheme = accentColor2;
 
   @override
@@ -140,18 +135,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       labelText: "Full Name",
                       hintText: "Full Name",
                     ),
-                    onChanged: (text) {
-                      setState(() {
-                        widget.registrationData.name = text.trim();
-                        isNameValid = widget.registrationData.name.length >= 3;
-
-                        if (!isNameValid) {
-                          colorTheme = Color(0xFFFF5C83);
-                        } else {
-                          colorTheme = accentColor2;
-                        }
-                      });
-                    },
                   ),
                   SizedBox(height: 16),
                   TextField(
@@ -163,19 +146,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       labelText: "Email Address",
                       hintText: "Email Address",
                     ),
-                    onChanged: (text) {
-                      setState(() {
-                        widget.registrationData.email = text.trim();
-                        isEmailValid = EmailValidator.validate(
-                            widget.registrationData.email);
-
-                        if (!isEmailValid) {
-                          colorTheme = Color(0xFFFF5C83);
-                        } else {
-                          colorTheme = accentColor2;
-                        }
-                      });
-                    },
                   ),
                   SizedBox(height: 16),
                   TextField(
@@ -188,19 +158,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       labelText: "Password",
                       hintText: "Password",
                     ),
-                    onChanged: (text) {
-                      setState(() {
-                        widget.registrationData.password = text.trim();
-                        isPasswordValid =
-                            widget.registrationData.password.length >= 6;
-
-                        if (!isPasswordValid) {
-                          colorTheme = Color(0xFFFF5C83);
-                        } else {
-                          colorTheme = accentColor2;
-                        }
-                      });
-                    },
                   ),
                   SizedBox(height: 16),
                   TextField(
@@ -213,18 +170,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       labelText: "Confirm Password",
                       hintText: "Confirm Password",
                     ),
-                    onChanged: (text) {
-                      setState(() {
-                        isRetypePasswordValid =
-                            widget.registrationData.password == text.trim();
-
-                        if (!isRetypePasswordValid) {
-                          colorTheme = Color(0xFFFF5C83);
-                        } else {
-                          colorTheme = accentColor2;
-                        }
-                      });
-                    },
                   ),
                   Center(
                     child: Container(
@@ -236,30 +181,57 @@ class _SignUpPageState extends State<SignUpPage> {
                         focusElevation: 0,
                         highlightElevation: 0,
                         hoverElevation: 0,
-                        backgroundColor: (isNameValid &&
-                                isEmailValid &&
-                                isPasswordValid &&
-                                isRetypePasswordValid)
-                            ? mainColor
-                            : Color(0xFFE4E4E4),
+                        backgroundColor: mainColor,
                         child: Icon(
                           Icons.arrow_forward,
-                          color: (isNameValid &&
-                                  isEmailValid &&
-                                  isPasswordValid &&
-                                  isRetypePasswordValid)
-                              ? Colors.white
-                              : Color(0xFFBEBEBE),
+                          color: Colors.white,
                         ),
-                        onPressed: (isNameValid &&
-                                isEmailValid &&
-                                isPasswordValid &&
-                                isRetypePasswordValid)
-                            ? () {
-                                context.bloc<PageBloc>().add(GoToPreferencePage(
-                                    widget.registrationData));
-                              }
-                            : null,
+                        onPressed: () {
+                          if (!(nameController.text.trim() != '' &&
+                              emailController.text.trim() != '' &&
+                              passwordController.text.trim() != '' &&
+                              retypePasswordController.text.trim() != '')) {
+                            Flushbar(
+                              duration: Duration(milliseconds: 1500),
+                              flushbarPosition: FlushbarPosition.TOP,
+                              backgroundColor: Color(0xFFFF5C83),
+                              message: 'Please fill all the fields',
+                            )..show(context);
+                          } else if (passwordController.text !=
+                              retypePasswordController.text) {
+                            Flushbar(
+                              duration: Duration(milliseconds: 1500),
+                              flushbarPosition: FlushbarPosition.TOP,
+                              backgroundColor: Color(0xFFFF5C83),
+                              message:
+                                  'Mismatch password and confirmed password',
+                            )..show(context);
+                          } else if (passwordController.text.length < 6) {
+                            Flushbar(
+                              duration: Duration(milliseconds: 1500),
+                              flushbarPosition: FlushbarPosition.TOP,
+                              backgroundColor: Color(0xFFFF5C83),
+                              message: 'Password\'s length min 6 characters',
+                            )..show(context);
+                          } else if (!EmailValidator.validate(
+                              emailController.text)) {
+                            Flushbar(
+                              duration: Duration(milliseconds: 1500),
+                              flushbarPosition: FlushbarPosition.TOP,
+                              backgroundColor: Color(0xFFFF5C83),
+                              message: "Wrong formatted email address",
+                            )..show(context);
+                          } else {
+                            widget.registrationData.name = nameController.text;
+                            widget.registrationData.email =
+                                emailController.text;
+                            widget.registrationData.password =
+                                passwordController.text;
+
+                            context.bloc<PageBloc>().add(
+                                GoToPreferencePage(widget.registrationData));
+                          }
+                        },
                       ),
                     ),
                   ),
