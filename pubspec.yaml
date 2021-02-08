@@ -28,6 +28,7 @@ dependencies:
   email_validator: ^1.0.4
   equatable: ^1.1.1
   firebase_auth: ^0.15.5+3
+  firebase_storage: ^3.1.5
   flushbar: ^1.10.0
   flutter_bloc: ^3.2.0
   flutter_spinkit: ^4.1.2+1
