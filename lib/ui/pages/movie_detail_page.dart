@@ -21,10 +21,7 @@ class MovieDetailPage extends StatelessWidget {
             Container(
               color: accentColor1,
             ),
-            SafeArea(
-                child: Container(
-              color: Colors.white,
-            )),
+            SafeArea(child: Container(color: Colors.white)),
             ListView(
               children: [
                 FutureBuilder(
@@ -51,7 +48,7 @@ class MovieDetailPage extends StatelessWidget {
                                 ),
                               ),
                               child: Container(
-                                height: 270,
+                                height: 271,
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     begin: Alignment(0, 1),
@@ -65,7 +62,8 @@ class MovieDetailPage extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.only(top: 16, left: 24),
+                              margin:
+                                  EdgeInsets.only(top: 20, left: defaultMargin),
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: GestureDetector(
