@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:bwa_flutix/bloc/blocs.dart';
 import 'package:bwa_flutix/models/models.dart';
 import 'package:equatable/equatable.dart';
 
@@ -27,6 +28,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield (OnAccountConfirmationPage(event.registrationData));
     } else if (event is GoToMainPage) {
       yield (OnMainPage());
+    } else if (event is GoToMovieDetailPage) {
+      yield (OnMovieDetailPage(event.movie));
     }
   }
 }
