@@ -35,11 +35,7 @@ class DateCard extends StatelessWidget {
             children: [
               Text(
                 date.shortDayName,
-                style: ((!isEnabled)
-                        ? greyTextFont
-                        : (isSelected)
-                            ? blackTextFont
-                            : greyTextFont)
+                style: ((!isEnabled) ? greyTextFont : blackTextFont)
                     .copyWith(fontSize: 16, fontWeight: FontWeight.w400),
               ),
               SizedBox(height: 6),
@@ -48,11 +44,7 @@ class DateCard extends StatelessWidget {
                 style: GoogleFonts.openSans().copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
-                  color: (!isEnabled)
-                      ? accentColor3
-                      : (isSelected)
-                          ? Colors.black
-                          : accentColor3,
+                  color: (!isEnabled) ? accentColor3 : Colors.black,
                 ),
               ),
             ],
@@ -62,13 +54,13 @@ class DateCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(6),
           border: Border.all(
             color: (!isEnabled)
-                ? Color(0xFFE4E4E4)
+                ? Color(0xFFF6F6F6)
                 : (isSelected)
                     ? accentColor2
                     : Color(0xFFE4E4E4),
           ),
           color: (!isEnabled)
-              ? Color(0xFFE4E4E4)
+              ? Color(0xFFF6F6F6)
               : (isSelected)
                   ? accentColor2
                   : Colors.transparent,

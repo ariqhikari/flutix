@@ -24,3 +24,4 @@ part 'main_page.dart';
 part 'splash_page.dart';
 part 'movie_page.dart';
 part 'movie_detail_page.dart';
+part 'schedule_page.dart';

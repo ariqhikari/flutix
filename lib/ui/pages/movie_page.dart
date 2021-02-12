@@ -101,10 +101,7 @@ class MoviePage extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(defaultMargin, 30, defaultMargin, 12),
           child: Text(
             'Now Playing',
-            style: blackTextFont.copyWith(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
+            style: blackTextFont.copyWith(fontSize: 16),
           ),
         ),
         Container(
@@ -142,10 +139,7 @@ class MoviePage extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 12),
           child: Text(
             'Browse Movie',
-            style: blackTextFont.copyWith(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
+            style: blackTextFont.copyWith(fontSize: 16),
           ),
         ),
         BlocBuilder<UserBloc, UserState>(builder: (_, userState) {
@@ -170,10 +164,7 @@ class MoviePage extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 12),
           child: Text(
             'Coming Soon',
-            style: blackTextFont.copyWith(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
+            style: blackTextFont.copyWith(fontSize: 16),
           ),
         ),
         Container(
@@ -203,10 +194,7 @@ class MoviePage extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 12),
           child: Text(
             'Get Lucky Day',
-            style: blackTextFont.copyWith(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
+            style: blackTextFont.copyWith(fontSize: 16),
           ),
         ),
         Container(

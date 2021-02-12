@@ -36,6 +36,7 @@ class SelectableBox extends StatelessWidget {
             style: (textStyle ?? blackTextFont).copyWith(
               fontSize: 16,
               fontWeight: FontWeight.w400,
+              color: (!isEnabled) ? Color(0xFFDDDCDC) : Colors.black,
             ),
           ),
         ),
@@ -43,13 +44,13 @@ class SelectableBox extends StatelessWidget {
           borderRadius: BorderRadius.circular(6),
           border: Border.all(
             color: (!isEnabled)
-                ? Color(0xFFE4E4E4)
+                ? Color(0xFFF6F6F6)
                 : (isSelected)
                     ? accentColor2
                     : Color(0xFFE4E4E4),
           ),
           color: (!isEnabled)
-              ? Color(0xFFE4E4E4)
+              ? Color(0xFFF6F6F6)
               : (isSelected)
                   ? accentColor2
                   : Colors.transparent,

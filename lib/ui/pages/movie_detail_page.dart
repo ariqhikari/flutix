@@ -63,7 +63,7 @@ class MovieDetailPage extends StatelessWidget {
                             ),
                             Container(
                               margin:
-                                  EdgeInsets.only(top: 20, left: defaultMargin),
+                                  EdgeInsets.only(top: 36, left: defaultMargin),
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: GestureDetector(
@@ -82,10 +82,7 @@ class MovieDetailPage extends StatelessWidget {
                         Text(
                           movie.title,
                           textAlign: TextAlign.center,
-                          style: blackTextFont.copyWith(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style: blackTextFont.copyWith(fontSize: 24),
                         ),
                         SizedBox(height: 6),
                         (snapshot.hasData)
@@ -115,10 +112,7 @@ class MovieDetailPage extends StatelessWidget {
                             alignment: Alignment.topLeft,
                             child: Text(
                               'Cast & Crew',
-                              style: blackTextFont.copyWith(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
+                              style: blackTextFont.copyWith(fontSize: 16),
                             ),
                           ),
                         ),
@@ -159,10 +153,7 @@ class MovieDetailPage extends StatelessWidget {
                             alignment: Alignment.topLeft,
                             child: Text(
                               'Storyline',
-                              style: blackTextFont.copyWith(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
+                              style: blackTextFont.copyWith(fontSize: 16),
                             ),
                           ),
                         ),
@@ -196,8 +187,9 @@ class MovieDetailPage extends StatelessWidget {
                             ),
                             color: mainColor,
                             onPressed: () {
-                              // context.bloc<PageBloc>().add(
-                              //     GoToRegistrationPage(RegistrationData()));
+                              context
+                                  .bloc<PageBloc>()
+                                  .add(GoToSchedulePage(movieDetail));
                             },
                           ),
                         ),
