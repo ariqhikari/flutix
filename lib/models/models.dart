@@ -7,5 +7,6 @@ part 'promo.dart';
 part 'movie.dart';
 part 'credit.dart';
 part 'theater.dart';
+part 'ticket.dart';
 part 'movie_detail.dart';
 part 'registration_data.dart';

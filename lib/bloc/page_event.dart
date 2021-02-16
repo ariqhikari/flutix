@@ -66,3 +66,12 @@ class GoToSchedulePage extends PageEvent {
   @override
   List<Object> get props => [movieDetail];
 }
+
+class GoToSeatPage extends PageEvent {
+  final Ticket ticket;
+
+  GoToSeatPage(this.ticket);
+
+  @override
+  List<Object> get props => [ticket];
+}

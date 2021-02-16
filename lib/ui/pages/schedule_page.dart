@@ -84,24 +84,40 @@ class _SchedulePageState extends State<SchedulePage> {
                   SizedBox(height: 30),
                   // * Next Button
                   Center(
-                    child: FloatingActionButton(
-                      elevation: 0,
-                      focusElevation: 0,
-                      highlightElevation: 0,
-                      hoverElevation: 0,
-                      backgroundColor:
-                          (isValid) ? mainColor : Color(0xFFE4E4E4),
-                      child: Icon(
-                        Icons.arrow_forward,
-                        color: (isValid) ? Colors.white : Color(0xFFBEBEBE),
+                    child: BlocBuilder<UserBloc, UserState>(
+                      builder: (_, userState) => FloatingActionButton(
+                        elevation: 0,
+                        focusElevation: 0,
+                        highlightElevation: 0,
+                        hoverElevation: 0,
+                        backgroundColor:
+                            (isValid) ? mainColor : Color(0xFFE4E4E4),
+                        child: Icon(
+                          Icons.arrow_forward,
+                          color: (isValid) ? Colors.white : Color(0xFFBEBEBE),
+                        ),
+                        onPressed: (isValid)
+                            ? () {
+                                context.bloc<PageBloc>().add(
+                                      GoToSeatPage(
+                                        Ticket(
+                                            widget.movieDetail,
+                                            selectedTheater,
+                                            DateTime(
+                                                selectedDate.year,
+                                                selectedDate.month,
+                                                selectedDate.day,
+                                                selectedTime),
+                                            randomAlphaNumeric(12)
+                                                .toUpperCase(),
+                                            null,
+                                            (userState as UserLoaded).user.name,
+                                            null),
+                                      ),
+                                    );
+                              }
+                            : null,
                       ),
-                      onPressed: (isValid)
-                          ? () {
-                              // context.bloc<PageBloc>().add(
-                              //     GoToAccountConfirmationPage(
-                              //         widget.registrationData));
-                            }
-                          : null,
                     ),
                   ),
                   SizedBox(height: 50),

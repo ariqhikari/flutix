@@ -18,9 +18,7 @@ class MovieDetailPage extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: [
-            Container(
-              color: accentColor1,
-            ),
+            Container(color: accentColor1),
             SafeArea(child: Container(color: Colors.white)),
             ListView(
               children: [
@@ -104,71 +102,69 @@ class MovieDetailPage extends StatelessWidget {
                           color: accentColor3,
                           rowMainAxisAlignment: MainAxisAlignment.center,
                         ),
-                        // * Cast & Crew
+                        // * Cast & Crew, Storyline
                         Container(
-                          padding: EdgeInsets.fromLTRB(
-                              defaultMargin, 30, defaultMargin, 12),
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              'Cast & Crew',
-                              style: blackTextFont.copyWith(fontSize: 16),
-                            ),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: defaultMargin),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // * Cast & Crew
+                              Container(
+                                margin: EdgeInsets.only(top: 24, bottom: 12),
+                                child: Text(
+                                  'Cast & Crew',
+                                  style: blackTextFont.copyWith(fontSize: 16),
+                                ),
+                              ),
+                              FutureBuilder(
+                                future: MovieServices.getCreditsMovie(movie.id),
+                                builder: (_, snapshot) {
+                                  if (snapshot.hasData) {
+                                    credits = snapshot.data;
+                                    return SizedBox(
+                                      height: 115,
+                                      child: ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: credits.length,
+                                        itemBuilder: (_, index) => Container(
+                                          margin: EdgeInsets.only(right: 16),
+                                          child: CreditCard(credits[index]),
+                                        ),
+                                      ),
+                                    );
+                                  } else {
+                                    return SizedBox(
+                                        height: 50,
+                                        child: SpinKitFadingCircle(
+                                          color: accentColor1,
+                                        ));
+                                  }
+                                },
+                              ),
+                              // * Storyline
+                              Container(
+                                margin: EdgeInsets.only(top: 24, bottom: 8),
+                                child: Text(
+                                  'Storyline',
+                                  style: blackTextFont.copyWith(fontSize: 16),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(bottom: 30),
+                                child: Text(
+                                  movie.overview,
+                                  style: greyTextFont.copyWith(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    height: 1.5,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        FutureBuilder(
-                          future: MovieServices.getCreditsMovie(movie.id),
-                          builder: (_, snapshot) {
-                            if (snapshot.hasData) {
-                              credits = snapshot.data;
-                              return SizedBox(
-                                height: 115,
-                                child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: credits.length,
-                                    itemBuilder: (_, index) => Container(
-                                        margin: EdgeInsets.only(
-                                            left: (index == 0)
-                                                ? defaultMargin
-                                                : 0,
-                                            right: (index == credits.length - 1)
-                                                ? defaultMargin
-                                                : 16),
-                                        child: CreditCard(credits[index]))),
-                              );
-                            } else {
-                              return SizedBox(
-                                  height: 50,
-                                  child: SpinKitFadingCircle(
-                                    color: accentColor1,
-                                  ));
-                            }
-                          },
-                        ),
-                        // * Storyline
-                        Container(
-                          padding: EdgeInsets.fromLTRB(
-                              defaultMargin, 24, defaultMargin, 12),
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              'Storyline',
-                              style: blackTextFont.copyWith(fontSize: 16),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(
-                              defaultMargin, 0, defaultMargin, 30),
-                          child: Text(
-                            movie.overview,
-                            style: greyTextFont.copyWith(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              height: 1.5,
-                            ),
-                          ),
-                        ),
+                        // * Next Button
                         Container(
                           width: 250,
                           height: 45,
