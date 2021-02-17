@@ -30,3 +30,21 @@ class UpdateData extends UserEvent {
   @override
   List<Object> get props => [name, profilePicture];
 }
+
+class TopUp extends UserEvent {
+  final int amount;
+
+  TopUp(this.amount);
+
+  @override
+  List<Object> get props => [amount];
+}
+
+class Purchase extends UserEvent {
+  final int amount;
+
+  Purchase(this.amount);
+
+  @override
+  List<Object> get props => [amount];
+}
