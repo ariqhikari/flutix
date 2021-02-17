@@ -10,3 +10,4 @@ part 'theater.dart';
 part 'ticket.dart';
 part 'movie_detail.dart';
 part 'registration_data.dart';
+part 'flutix_transaction.dart';
