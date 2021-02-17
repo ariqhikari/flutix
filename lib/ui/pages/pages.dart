@@ -15,6 +15,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:bwa_flutix/bloc/blocs.dart';
 import 'package:random_string/random_string.dart';
+import 'package:bwa_flutix/extensions/extensions.dart';
 
 part 'wrapper.dart';
 part 'sign_in_page.dart';
@@ -27,3 +28,4 @@ part 'movie_page.dart';
 part 'movie_detail_page.dart';
 part 'schedule_page.dart';
 part 'seat_page.dart';
+part 'checkout_page.dart';

@@ -86,6 +86,7 @@ class MovieDetailPage extends StatelessWidget {
                         (snapshot.hasData)
                             ? Text(
                                 movieDetail.genresAndLanguage,
+                                textAlign: TextAlign.center,
                                 style: greyTextFont.copyWith(
                                     fontSize: 14, fontWeight: FontWeight.w400),
                               )

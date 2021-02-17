@@ -12,8 +12,8 @@ class RegistrationData {
     this.name = '',
     this.email = '',
     this.password = '',
-    this.selectedGenres = const [],
-    this.selectedLanguage = '',
+    this.selectedGenres,
+    this.selectedLanguage = 'English',
     this.profileImage,
   });
 }

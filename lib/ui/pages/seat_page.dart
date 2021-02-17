@@ -10,8 +10,6 @@ class SeatPage extends StatefulWidget {
 }
 
 class _SeatPageState extends State<SeatPage> {
-  List<String> selectedSeats = [];
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -49,7 +47,7 @@ class _SeatPageState extends State<SeatPage> {
                         // * Movie Detail
                         Row(
                           children: [
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width * 0.5,
                               child: Text(
                                 widget.ticket.movieDetail.title,
@@ -178,16 +176,22 @@ class _SeatPageState extends State<SeatPage> {
                       focusElevation: 0,
                       highlightElevation: 0,
                       hoverElevation: 0,
-                      backgroundColor: (selectedSeats.length > 0)
+                      backgroundColor: (widget.ticket.seats.length > 0)
                           ? mainColor
                           : Color(0xFFE4E4E4),
                       child: Icon(
                         Icons.arrow_forward,
-                        color: (selectedSeats.length > 0)
+                        color: (widget.ticket.seats.length > 0)
                             ? Colors.white
                             : Color(0xFFBEBEBE),
                       ),
-                      onPressed: (selectedSeats.length > 0) ? () {} : null,
+                      onPressed: (widget.ticket.seats.length > 0)
+                          ? () {
+                              context
+                                  .bloc<PageBloc>()
+                                  .add(GoToCheckoutPage(widget.ticket));
+                            }
+                          : null,
                     ),
                   ),
                   SizedBox(height: 40),
@@ -230,7 +234,7 @@ class _SeatPageState extends State<SeatPage> {
                     fontWeight: FontWeight.w400,
                   ),
                   isEnabled: index != 0,
-                  isSelected: selectedSeats
+                  isSelected: widget.ticket.seats
                       .contains('${String.fromCharCode(i + 65)}${index + 1}'),
                   onTap: () {
                     onSelectSeat('${String.fromCharCode(i + 65)}${index + 1}');
@@ -247,14 +251,13 @@ class _SeatPageState extends State<SeatPage> {
   }
 
   void onSelectSeat(String seat) {
-    if (selectedSeats.contains(seat)) {
+    if (widget.ticket.seats.contains(seat)) {
       setState(() {
-        selectedSeats.remove(seat);
+        widget.ticket.seats.remove(seat);
       });
     } else {
       setState(() {
-        isSelectSeat = true;
-        selectedSeats.add(seat);
+        widget.ticket.seats.add(seat);
       });
     }
   }

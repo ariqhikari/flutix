@@ -25,9 +25,6 @@ class PreferencePage extends StatefulWidget {
 }
 
 class _PreferencePageState extends State<PreferencePage> {
-  List<String> selectedGenres = [];
-  String selectedLanguage = 'English';
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -93,7 +90,8 @@ class _PreferencePageState extends State<PreferencePage> {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        if (selectedGenres.length != 4) {
+                        if (widget.registrationData.selectedGenres.length !=
+                            4) {
                           Flushbar(
                             duration: Duration(milliseconds: 1500),
                             flushbarPosition: FlushbarPosition.TOP,
@@ -101,11 +99,6 @@ class _PreferencePageState extends State<PreferencePage> {
                             message: 'Please select 4 genres',
                           )..show(context);
                         } else {
-                          widget.registrationData.selectedGenres =
-                              selectedGenres;
-                          widget.registrationData.selectedLanguage =
-                              selectedLanguage;
-
                           context.bloc<PageBloc>().add(
                               GoToAccountConfirmationPage(
                                   widget.registrationData));
@@ -131,7 +124,8 @@ class _PreferencePageState extends State<PreferencePage> {
         .map((genre) => SelectableBox(
               genre,
               width: width,
-              isSelected: selectedGenres.contains(genre),
+              isSelected:
+                  widget.registrationData.selectedGenres.contains(genre),
               onTap: () {
                 onSelectGenre(genre);
               },
@@ -147,10 +141,10 @@ class _PreferencePageState extends State<PreferencePage> {
         .map((language) => SelectableBox(
               language,
               width: width,
-              isSelected: selectedLanguage == language,
+              isSelected: widget.registrationData.selectedLanguage == language,
               onTap: () {
                 setState(() {
-                  selectedLanguage = language;
+                  widget.registrationData.selectedLanguage = language;
                 });
               },
             ))
@@ -158,14 +152,16 @@ class _PreferencePageState extends State<PreferencePage> {
   }
 
   void onSelectGenre(String genre) {
-    if (selectedGenres.contains(genre)) {
+    if (widget.registrationData.selectedGenres.contains(genre)) {
       setState(() {
-        selectedGenres.remove(genre);
+        print("REMOVE GENRE");
+        widget.registrationData.selectedGenres.remove(genre);
       });
     } else {
-      if (selectedGenres.length < 4) {
+      if (widget.registrationData.selectedGenres.length < 4) {
         setState(() {
-          selectedGenres.add(genre);
+          print("ADD GENRE");
+          widget.registrationData.selectedGenres.add(genre);
         });
       }
     }

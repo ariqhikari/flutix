@@ -110,7 +110,7 @@ class _SchedulePageState extends State<SchedulePage> {
                                                 selectedTime),
                                             randomAlphaNumeric(12)
                                                 .toUpperCase(),
-                                            null,
+                                            [],
                                             (userState as UserLoaded).user.name,
                                             null),
                                       ),
