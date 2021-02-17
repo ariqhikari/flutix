@@ -4,15 +4,14 @@ class FlutixTransactionServices {
   static CollectionReference _transactionCollection =
       Firestore.instance.collection('transactions');
 
-  static Future<void> saveTransaction(
-      FlutixTransaction flutixTransaction) async {
+  static Future<void> saveTransaction(FlutixTransaction transaction) async {
     await _transactionCollection.document().setData({
-      'userID': flutixTransaction.userID,
-      'title': flutixTransaction.title,
-      'subtitle': flutixTransaction.subtitle,
-      'amount': flutixTransaction.amount,
-      'time': flutixTransaction.time.millisecondsSinceEpoch,
-      'picture': flutixTransaction.picture,
+      'userID': transaction.userID,
+      'title': transaction.title,
+      'subtitle': transaction.subtitle,
+      'amount': transaction.amount,
+      'time': transaction.time.millisecondsSinceEpoch,
+      'picture': transaction.picture,
     });
   }
 

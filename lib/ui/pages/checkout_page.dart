@@ -384,6 +384,18 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           onPressed: () {
                             if (user.balance >= total) {
                               // * Uang Cukup
+                              FlutixTransaction transaction = FlutixTransaction(
+                                userID: user.id,
+                                title: widget.ticket.movieDetail.title,
+                                subtitle: widget.ticket.theater.name,
+                                amount: -total,
+                                time: DateTime.now(),
+                                picture: widget.ticket.movieDetail.posterPath,
+                              );
+
+                              context.bloc<PageBloc>().add(GoToSuccessPage(
+                                  widget.ticket.copyWith(totalPrice: total),
+                                  transaction));
                             } else {
                               // * Uang Tidak Cukup
                             }

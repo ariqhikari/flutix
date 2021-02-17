@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
               create: (_) => MovieBloc()..add(FetchNowPlayingMovies())),
           BlocProvider(
               create: (_) => ComingMovieBloc()..add(FetchComingSoonMovies())),
+          BlocProvider(create: (_) => TicketBloc()),
         ],
         child: BlocBuilder<ThemeBloc, ThemeState>(
           builder: (_, themeState) => MaterialApp(

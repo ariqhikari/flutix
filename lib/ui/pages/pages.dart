@@ -29,3 +29,4 @@ part 'movie_detail_page.dart';
 part 'schedule_page.dart';
 part 'seat_page.dart';
 part 'checkout_page.dart';
+part 'success_page.dart';
