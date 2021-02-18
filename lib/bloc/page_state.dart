@@ -50,8 +50,12 @@ class OnAccountConfirmationPage extends PageState {
 }
 
 class OnMainPage extends PageState {
+  final int bottomNavbarIndex;
+
+  OnMainPage(this.bottomNavbarIndex);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [bottomNavbarIndex];
 }
 
 class OnMovieDetailPage extends PageState {

@@ -12,7 +12,7 @@ class MovieDetailPage extends StatelessWidget {
 
     return WillPopScope(
       onWillPop: () {
-        context.bloc<PageBloc>().add(GoToMainPage());
+        context.bloc<PageBloc>().add(GoToMainPage(0));
         return;
       },
       child: Scaffold(
@@ -70,7 +70,7 @@ class MovieDetailPage extends StatelessWidget {
                                   onTap: () {
                                     context
                                         .bloc<PageBloc>()
-                                        .add(GoToMainPage());
+                                        .add(GoToMainPage(0));
                                   },
                                 ),
                               ),

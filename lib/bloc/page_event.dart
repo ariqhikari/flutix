@@ -45,8 +45,12 @@ class GoToAccountConfirmationPage extends PageEvent {
 }
 
 class GoToMainPage extends PageEvent {
+  final int bottomNavbarIndex;
+
+  GoToMainPage(this.bottomNavbarIndex);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [bottomNavbarIndex];
 }
 
 class GoToMovieDetailPage extends PageEvent {

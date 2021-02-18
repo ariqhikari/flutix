@@ -27,7 +27,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToAccountConfirmationPage) {
       yield (OnAccountConfirmationPage(event.registrationData));
     } else if (event is GoToMainPage) {
-      yield (OnMainPage());
+      yield (OnMainPage(event.bottomNavbarIndex));
     } else if (event is GoToMovieDetailPage) {
       yield (OnMovieDetailPage(event.movie));
     } else if (event is GoToSchedulePage) {

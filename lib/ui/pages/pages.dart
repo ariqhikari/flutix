@@ -25,6 +25,7 @@ part 'account_confirmation_page.dart';
 part 'main_page.dart';
 part 'splash_page.dart';
 part 'movie_page.dart';
+part 'ticket_page.dart';
 part 'movie_detail_page.dart';
 part 'schedule_page.dart';
 part 'seat_page.dart';
