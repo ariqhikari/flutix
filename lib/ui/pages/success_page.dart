@@ -76,9 +76,9 @@ class SuccessPage extends StatelessWidget {
                               ),
                               color: mainColor,
                               onPressed: () {
-                                print('Amount : ' +
-                                    transaction.amount.toString());
-                                context.bloc<PageBloc>().add(GoToMainPage(1));
+                                context
+                                    .bloc<PageBloc>()
+                                    .add(GoToMainPage(bottomNavBarIndex: 1));
                               },
                             ),
                           ),
@@ -97,7 +97,9 @@ class SuccessPage extends StatelessWidget {
                                   style: purpleTextFont.copyWith(fontSize: 14),
                                 ),
                                 onTap: () {
-                                  context.bloc<PageBloc>().add(GoToMainPage(0));
+                                  context
+                                      .bloc<PageBloc>()
+                                      .add(GoToMainPage(bottomNavBarIndex: 0));
                                 },
                               ),
                             ],

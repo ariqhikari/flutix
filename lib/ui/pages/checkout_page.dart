@@ -255,7 +255,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             '${NumberFormat.currency(
                               locale: 'id_ID',
                               decimalDigits: 0,
-                              symbol: 'Rp ',
+                              symbol: 'IDR ',
                             ).format(25000)} x ${widget.ticket.seats.length}',
                             textAlign: TextAlign.right,
                             style: GoogleFonts.openSans().copyWith(
@@ -283,7 +283,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             '${NumberFormat.currency(
                               locale: 'id_ID',
                               decimalDigits: 0,
-                              symbol: 'Rp ',
+                              symbol: 'IDR ',
                             ).format(1500)} x ${widget.ticket.seats.length}',
                             textAlign: TextAlign.right,
                             style: GoogleFonts.openSans().copyWith(
@@ -311,7 +311,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             NumberFormat.currency(
                               locale: 'id_ID',
                               decimalDigits: 0,
-                              symbol: 'Rp ',
+                              symbol: 'IDR ',
                             ).format(total),
                             textAlign: TextAlign.right,
                             style: GoogleFonts.openSans().copyWith(
@@ -346,7 +346,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             NumberFormat.currency(
                               locale: 'id_ID',
                               decimalDigits: 0,
-                              symbol: 'Rp ',
+                              symbol: 'IDR ',
                             ).format(user.balance),
                             textAlign: TextAlign.right,
                             style: GoogleFonts.openSans().copyWith(

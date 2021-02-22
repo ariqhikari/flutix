@@ -1,12 +1,23 @@
 part of 'pages.dart';
 
 class TicketPage extends StatefulWidget {
+  final bool isExpiredTicket;
+
+  TicketPage({this.isExpiredTicket = false});
+
   @override
   _TicketPageState createState() => _TicketPageState();
 }
 
 class _TicketPageState extends State<TicketPage> {
-  bool isExpiredTickets = false;
+  bool isExpiredTickets;
+
+  @override
+  void initState() {
+    super.initState();
+
+    isExpiredTickets = widget.isExpiredTicket;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,74 +148,81 @@ class TicketViewer extends StatelessWidget {
       itemCount: sortedTickets.length,
       itemBuilder: (_, index) => Container(
         margin: EdgeInsets.only(bottom: 20),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // * Poster
-            Container(
-              width: 70,
-              height: 90,
-              margin: EdgeInsets.only(right: 20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(imageBaseURL +
-                      'w342' +
-                      tickets[index].movieDetail.posterPath),
+        child: GestureDetector(
+          onTap: () {
+            context
+                .bloc<PageBloc>()
+                .add(GoToTicketDetailPage(sortedTickets[index]));
+          },
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // * Poster
+              Container(
+                width: 70,
+                height: 90,
+                margin: EdgeInsets.only(right: 20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(imageBaseURL +
+                        'w342' +
+                        sortedTickets[index].movieDetail.posterPath),
+                  ),
                 ),
               ),
-            ),
-            // * Title, Genres, Rating
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // * Title
-                SizedBox(
-                  width: MediaQuery.of(context).size.width -
-                      2 * defaultMargin -
-                      70 -
-                      20,
-                  child: Text(
-                    tickets[index].movieDetail.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: blackTextFont.copyWith(fontSize: 18),
+              // * Title, Genres, Rating
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // * Title
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width -
+                        2 * defaultMargin -
+                        70 -
+                        20,
+                    child: Text(
+                      sortedTickets[index].movieDetail.title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: blackTextFont.copyWith(fontSize: 18),
+                    ),
                   ),
-                ),
-                SizedBox(height: 6),
-                // * Genres
-                SizedBox(
-                  width: MediaQuery.of(context).size.width -
-                      2 * defaultMargin -
-                      70 -
-                      20,
-                  child: Text(
-                    tickets[index].movieDetail.genresAndLanguage,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: greyTextFont.copyWith(
-                        fontSize: 12, fontWeight: FontWeight.w400),
+                  SizedBox(height: 6),
+                  // * Genres
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width -
+                        2 * defaultMargin -
+                        70 -
+                        20,
+                    child: Text(
+                      sortedTickets[index].movieDetail.genresAndLanguage,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: greyTextFont.copyWith(
+                          fontSize: 12, fontWeight: FontWeight.w400),
+                    ),
                   ),
-                ),
-                SizedBox(height: 6),
-                // * Theater
-                SizedBox(
-                  width: MediaQuery.of(context).size.width -
-                      2 * defaultMargin -
-                      70 -
-                      20,
-                  child: Text(
-                    tickets[index].theater.name,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: greyTextFont.copyWith(
-                        fontSize: 12, fontWeight: FontWeight.w400),
+                  SizedBox(height: 6),
+                  // * Theater
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width -
+                        2 * defaultMargin -
+                        70 -
+                        20,
+                    child: Text(
+                      tickets[index].theater.name,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: greyTextFont.copyWith(
+                          fontSize: 12, fontWeight: FontWeight.w400),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

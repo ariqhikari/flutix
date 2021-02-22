@@ -30,34 +30,39 @@ class MoviePage extends StatelessWidget {
                 return Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(
-                      margin: EdgeInsets.only(right: 16),
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Color(0xFF5F558B),
-                          width: 1,
+                    GestureDetector(
+                      onTap: () {
+                        context.bloc<PageBloc>().add(GoToProfilePage());
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(right: 16),
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Color(0xFF5F558B),
+                            width: 1,
+                          ),
                         ),
-                      ),
-                      child: Stack(
-                        children: [
-                          SpinKitFadingCircle(color: accentColor2, size: 50),
-                          Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: (userState.user.profilePicture == ''
-                                    ? AssetImage('assets/user_pic.png')
-                                    : NetworkImage(
-                                        userState.user.profilePicture)),
+                        child: Stack(
+                          children: [
+                            SpinKitFadingCircle(color: accentColor2, size: 50),
+                            Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: (userState.user.profilePicture == ''
+                                      ? AssetImage('assets/user_pic.png')
+                                      : NetworkImage(
+                                          userState.user.profilePicture)),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     Column(

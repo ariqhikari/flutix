@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:bwa_flutix/bloc/blocs.dart';
 import 'package:bwa_flutix/models/models.dart';
 import 'package:equatable/equatable.dart';
 
@@ -27,7 +26,9 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToAccountConfirmationPage) {
       yield (OnAccountConfirmationPage(event.registrationData));
     } else if (event is GoToMainPage) {
-      yield (OnMainPage(event.bottomNavbarIndex));
+      yield OnMainPage(
+          bottomNavBarIndex: event.bottomNavBarIndex,
+          isExpired: event.isExpired);
     } else if (event is GoToMovieDetailPage) {
       yield (OnMovieDetailPage(event.movie));
     } else if (event is GoToSchedulePage) {
@@ -38,6 +39,10 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield (OnCheckoutPage(event.ticket));
     } else if (event is GoToSuccessPage) {
       yield (OnSuccessPage(event.ticket, event.transaction));
+    } else if (event is GoToTicketDetailPage) {
+      yield (OnTicketDetailPage(event.ticket));
+    } else if (event is GoToProfilePage) {
+      yield (OnProfilePage());
     }
   }
 }

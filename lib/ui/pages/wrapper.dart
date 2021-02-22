@@ -15,8 +15,8 @@ class Wrapper extends StatelessWidget {
         context.bloc<UserBloc>().add(LoadUser(firebaseUser.uid));
         context.bloc<TicketBloc>().add(GetTickets(firebaseUser.uid));
 
-        prevPageEvent = GoToMainPage(0);
-        context.bloc<PageBloc>().add(GoToMainPage(0));
+        prevPageEvent = GoToMainPage(bottomNavBarIndex: 0);
+        context.bloc<PageBloc>().add(GoToMainPage(bottomNavBarIndex: 0));
       }
     }
 
@@ -42,9 +42,23 @@ class Wrapper extends StatelessWidget {
                                           : (pageState is OnSuccessPage)
                                               ? SuccessPage(pageState.ticket,
                                                   pageState.transaction)
-                                              : MainPage(pageState is OnMainPage
-                                                  ? pageState.bottomNavbarIndex
-                                                  : 0),
+                                              : (pageState
+                                                      is OnTicketDetailPage)
+                                                  ? TicketDetailPage(
+                                                      pageState.ticket)
+                                                  : (pageState is OnProfilePage)
+                                                      ? ProfilePage()
+                                                      : (pageState
+                                                              is OnMainPage)
+                                                          ? MainPage(
+                                                              bottomNavBarIndex:
+                                                                  pageState
+                                                                      .bottomNavBarIndex,
+                                                              isExpired:
+                                                                  pageState
+                                                                      .isExpired,
+                                                            )
+                                                          : Container(),
     );
   }
 }

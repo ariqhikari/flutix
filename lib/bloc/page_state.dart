@@ -50,12 +50,13 @@ class OnAccountConfirmationPage extends PageState {
 }
 
 class OnMainPage extends PageState {
-  final int bottomNavbarIndex;
+  final int bottomNavBarIndex;
+  final bool isExpired;
 
-  OnMainPage(this.bottomNavbarIndex);
+  OnMainPage({this.bottomNavBarIndex = 0, this.isExpired = false});
 
   @override
-  List<Object> get props => [bottomNavbarIndex];
+  List<Object> get props => [bottomNavBarIndex, isExpired];
 }
 
 class OnMovieDetailPage extends PageState {
@@ -102,4 +103,18 @@ class OnSuccessPage extends PageState {
 
   @override
   List<Object> get props => [ticket, transaction];
+}
+
+class OnTicketDetailPage extends PageState {
+  final Ticket ticket;
+
+  OnTicketDetailPage(this.ticket);
+
+  @override
+  List<Object> get props => [ticket];
+}
+
+class OnProfilePage extends PageState {
+  @override
+  List<Object> get props => [];
 }
