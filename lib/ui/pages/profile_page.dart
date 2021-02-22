@@ -1,11 +1,6 @@
 part of 'pages.dart';
 
-class ProfilePage extends StatefulWidget {
-  @override
-  _ProfilePageState createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
+class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -33,7 +28,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: GestureDetector(
                             child: Icon(Icons.arrow_back, color: Colors.black),
                             onTap: () {
-                              context.bloc<PageBloc>().add(GoToMainPage(bottomNavBarIndex: 0));
+                              context
+                                  .bloc<PageBloc>()
+                                  .add(GoToMainPage(bottomNavBarIndex: 0));
                             },
                           ),
                         ),

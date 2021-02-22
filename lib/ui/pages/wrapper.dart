@@ -49,16 +49,20 @@ class Wrapper extends StatelessWidget {
                                                   : (pageState is OnProfilePage)
                                                       ? ProfilePage()
                                                       : (pageState
-                                                              is OnMainPage)
-                                                          ? MainPage(
-                                                              bottomNavBarIndex:
-                                                                  pageState
-                                                                      .bottomNavBarIndex,
-                                                              isExpired:
-                                                                  pageState
-                                                                      .isExpired,
-                                                            )
-                                                          : Container(),
+                                                              is OnTopUpPage)
+                                                          ? TopUpPage(pageState
+                                                              .pageEvent)
+                                                          : (pageState
+                                                                  is OnMainPage)
+                                                              ? MainPage(
+                                                                  bottomNavBarIndex:
+                                                                      pageState
+                                                                          .bottomNavBarIndex,
+                                                                  isExpired:
+                                                                      pageState
+                                                                          .isExpired,
+                                                                )
+                                                              : Container(),
     );
   }
 }

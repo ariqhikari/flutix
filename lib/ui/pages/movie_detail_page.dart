@@ -41,7 +41,7 @@ class MovieDetailPage extends StatelessWidget {
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image: NetworkImage(imageBaseURL +
-                                      'w500' +
+                                      'w1280' +
                                       movie.backdropPath),
                                 ),
                               ),
@@ -68,9 +68,8 @@ class MovieDetailPage extends StatelessWidget {
                                   child: Icon(Icons.arrow_back,
                                       color: Colors.white),
                                   onTap: () {
-                                    context
-                                        .bloc<PageBloc>()
-                                        .add(GoToMainPage(bottomNavBarIndex: 0));
+                                    context.bloc<PageBloc>().add(
+                                        GoToMainPage(bottomNavBarIndex: 0));
                                   },
                                 ),
                               ),
