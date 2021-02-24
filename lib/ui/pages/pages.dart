@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bwa_flutix/models/models.dart';
 import 'package:bwa_flutix/shared/shared.dart';
 import 'package:bwa_flutix/ui/widgets/widgets.dart';
@@ -13,7 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bwa_flutix/services/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-
+import 'package:path/path.dart';
 import 'package:bwa_flutix/bloc/blocs.dart';
 import 'package:random_string/random_string.dart';
 import 'package:bwa_flutix/extensions/extensions.dart';
@@ -36,3 +38,4 @@ part 'ticket_detail_page.dart';
 part 'profile_page.dart';
 part 'topup_page.dart';
 part 'wallet_page.dart';
+part 'edit_profile_page.dart';

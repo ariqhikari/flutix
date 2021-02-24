@@ -71,20 +71,27 @@ class ProfilePage extends StatelessWidget {
                         ),
                         SizedBox(height: 30),
                         // * Edit Profile
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 24,
-                              height: 24,
-                              margin: EdgeInsets.only(right: 10),
-                              child: Image.asset("assets/edit_profile.png"),
-                            ),
-                            Text(
-                              'Edit Profile',
-                              style: blackTextFont.copyWith(fontSize: 16),
-                            ),
-                          ],
+                        GestureDetector(
+                          onTap: () {
+                            context
+                                .bloc<PageBloc>()
+                                .add(GoToEditProfilePage(user));
+                          },
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 24,
+                                height: 24,
+                                margin: EdgeInsets.only(right: 10),
+                                child: Image.asset("assets/edit_profile.png"),
+                              ),
+                              Text(
+                                'Edit Profile',
+                                style: blackTextFont.copyWith(fontSize: 16),
+                              ),
+                            ],
+                          ),
                         ),
                         SizedBox(height: 12),
                         generateDashedDivider(
