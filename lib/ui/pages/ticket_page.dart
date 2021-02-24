@@ -212,7 +212,7 @@ class TicketViewer extends StatelessWidget {
                         70 -
                         20,
                     child: Text(
-                      tickets[index].theater.name,
+                      sortedTickets[index].theater.name,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: greyTextFont.copyWith(

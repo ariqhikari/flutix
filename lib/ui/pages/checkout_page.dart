@@ -388,7 +388,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 userID: user.id,
                                 title: widget.ticket.movieDetail.title,
                                 subtitle: widget.ticket.theater.name,
-                                amount: -total,
+                                amount: total,
                                 time: DateTime.now(),
                                 picture: widget.ticket.movieDetail.posterPath,
                               );

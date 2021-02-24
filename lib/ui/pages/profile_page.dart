@@ -92,20 +92,27 @@ class ProfilePage extends StatelessWidget {
                                 2 * defaultMargin),
                         SizedBox(height: 16),
                         // * My Wallet
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 24,
-                              height: 24,
-                              margin: EdgeInsets.only(right: 10),
-                              child: Image.asset("assets/my_wallet.png"),
-                            ),
-                            Text(
-                              'My Wallet',
-                              style: blackTextFont.copyWith(fontSize: 16),
-                            ),
-                          ],
+                        GestureDetector(
+                          onTap: () {
+                            context
+                                .bloc<PageBloc>()
+                                .add(GoToWalletPage(GoToProfilePage()));
+                          },
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 24,
+                                height: 24,
+                                margin: EdgeInsets.only(right: 10),
+                                child: Image.asset("assets/my_wallet.png"),
+                              ),
+                              Text(
+                                'My Wallet',
+                                style: blackTextFont.copyWith(fontSize: 16),
+                              ),
+                            ],
+                          ),
                         ),
                         SizedBox(height: 12),
                         generateDashedDivider(

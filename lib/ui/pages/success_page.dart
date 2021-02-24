@@ -76,9 +76,15 @@ class SuccessPage extends StatelessWidget {
                               ),
                               color: mainColor,
                               onPressed: () {
-                                context
-                                    .bloc<PageBloc>()
-                                    .add(GoToMainPage(bottomNavBarIndex: 1));
+                                if (ticket != null) {
+                                  context
+                                      .bloc<PageBloc>()
+                                      .add(GoToMainPage(bottomNavBarIndex: 1));
+                                } else {
+                                  context
+                                      .bloc<PageBloc>()
+                                      .add(GoToWalletPage(GoToMainPage()));
+                                }
                               },
                             ),
                           ),
