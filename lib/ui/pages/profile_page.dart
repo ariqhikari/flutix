@@ -44,6 +44,7 @@ class ProfilePage extends StatelessWidget {
                                 height: 120,
                                 margin: EdgeInsets.only(bottom: 10),
                                 decoration: BoxDecoration(
+                                  color: Colors.blueGrey[100],
                                   shape: BoxShape.circle,
                                   image: DecorationImage(
                                     fit: BoxFit.cover,

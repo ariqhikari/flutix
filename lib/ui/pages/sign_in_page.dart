@@ -93,10 +93,34 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                       ),
                       SizedBox(width: 5),
-                      Text(
-                        'Get Now',
-                        style: purpleTextFont.copyWith(
-                          fontSize: 12,
+                      GestureDetector(
+                        onTap: () async {
+                          if (isEmailValid) {
+                            await AuthServices.resetPassword(
+                                emailController.text);
+
+                            Flushbar(
+                              duration: Duration(milliseconds: 2000),
+                              flushbarPosition: FlushbarPosition.TOP,
+                              backgroundColor: Color(0xFFFF5C83),
+                              message:
+                                  "The link to change your password has been sent to your email.",
+                            )..show(context);
+                          } else {
+                            Flushbar(
+                              duration: Duration(milliseconds: 2000),
+                              flushbarPosition: FlushbarPosition.TOP,
+                              backgroundColor: Color(0xFFFF5C83),
+                              message:
+                                  "Please give your email address with right format.",
+                            )..show(context);
+                          }
+                        },
+                        child: Text(
+                          'Get Now',
+                          style: purpleTextFont.copyWith(
+                            fontSize: 12,
+                          ),
                         ),
                       ),
                     ],
@@ -163,10 +187,17 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                       ),
                       SizedBox(width: 5),
-                      Text(
-                        'Sign Up',
-                        style: purpleTextFont.copyWith(
-                          fontSize: 14,
+                      GestureDetector(
+                        onTap: () {
+                          context
+                              .bloc<PageBloc>()
+                              .add(GoToRegistrationPage(RegistrationData()));
+                        },
+                        child: Text(
+                          'Sign Up',
+                          style: purpleTextFont.copyWith(
+                            fontSize: 14,
+                          ),
                         ),
                       ),
                     ],

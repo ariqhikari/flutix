@@ -72,13 +72,17 @@ class _CheckoutPageState extends State<CheckoutPage> {
                             height: 90,
                             margin: EdgeInsets.only(right: 20),
                             decoration: BoxDecoration(
+                              color: Colors.blueGrey[100],
                               borderRadius: BorderRadius.circular(8),
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(imageBaseURL +
-                                    'w342' +
-                                    widget.ticket.movieDetail.posterPath),
-                              ),
+                              image: (widget.ticket.movieDetail.posterPath ==
+                                      null)
+                                  ? null
+                                  : DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(imageBaseURL +
+                                          'w342' +
+                                          widget.ticket.movieDetail.posterPath),
+                                    ),
                             ),
                           ),
                           // * Title, Genres, Rating

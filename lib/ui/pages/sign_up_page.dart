@@ -81,6 +81,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           width: 90,
                           height: 90,
                           decoration: BoxDecoration(
+                            color: Colors.blueGrey[100],
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               fit: BoxFit.cover,

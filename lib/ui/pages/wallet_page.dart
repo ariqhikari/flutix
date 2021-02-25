@@ -300,6 +300,7 @@ class WalletPage extends StatelessWidget {
                     height: 90,
                     margin: EdgeInsets.only(right: 20),
                     decoration: BoxDecoration(
+                      color: Colors.blueGrey[100],
                       borderRadius: BorderRadius.circular(8),
                       image: DecorationImage(
                         fit: BoxFit.cover,

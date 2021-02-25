@@ -58,14 +58,19 @@ class TicketDetailPage extends StatelessWidget {
                       margin: EdgeInsets.only(top: 20),
                       height: 170,
                       decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage(imageBaseURL +
-                                  "w500" +
-                                  ticket.movieDetail.backdropPath),
-                              fit: BoxFit.cover),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(12),
-                              topRight: Radius.circular(12))),
+                        color: Colors.blueGrey[100],
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(12),
+                          topRight: Radius.circular(12),
+                        ),
+                        image: (ticket.movieDetail.backdropPath == null)
+                            ? null
+                            : DecorationImage(
+                                image: NetworkImage(imageBaseURL +
+                                    "w500" +
+                                    ticket.movieDetail.backdropPath),
+                                fit: BoxFit.cover),
+                      ),
                     ),
                     ClipPath(
                       clipper: TicketTopClipper(),

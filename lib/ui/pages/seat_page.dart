@@ -64,13 +64,19 @@ class _SeatPageState extends State<SeatPage> {
                               height: 60,
                               margin: EdgeInsets.only(left: 16),
                               decoration: BoxDecoration(
+                                color: Colors.blueGrey[100],
                                 borderRadius: BorderRadius.circular(8),
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(imageBaseURL +
-                                      'w154' +
-                                      widget.ticket.movieDetail.backdropPath),
-                                ),
+                                image:
+                                    (widget.ticket.movieDetail.backdropPath ==
+                                            null)
+                                        ? null
+                                        : DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: NetworkImage(imageBaseURL +
+                                                'w154' +
+                                                widget.ticket.movieDetail
+                                                    .backdropPath),
+                                          ),
                               ),
                             ),
                           ],

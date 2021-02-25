@@ -18,11 +18,15 @@ class MovieCard extends StatelessWidget {
         width: 210,
         height: 140,
         decoration: BoxDecoration(
+          color: Colors.blueGrey[100],
           borderRadius: BorderRadius.circular(8),
-          image: DecorationImage(
-            fit: BoxFit.cover,
-            image: NetworkImage(imageBaseURL + 'w500' + movie.backdropPath),
-          ),
+          image: (movie.backdropPath == null)
+              ? null
+              : DecorationImage(
+                  fit: BoxFit.cover,
+                  image:
+                      NetworkImage(imageBaseURL + 'w500' + movie.backdropPath),
+                ),
         ),
         child: Container(
           width: 210,

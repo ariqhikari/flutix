@@ -12,11 +12,14 @@ class ComingSoonCard extends StatelessWidget {
       width: 100,
       height: 140,
       decoration: BoxDecoration(
+        color: Colors.blueGrey[100],
         borderRadius: BorderRadius.circular(8),
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage(imageBaseURL + 'w500' + movie.posterPath),
-        ),
+        image: (movie.posterPath == null)
+            ? null
+            : DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(imageBaseURL + 'w500' + movie.posterPath),
+              ),
       ),
     );
   }

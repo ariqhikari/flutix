@@ -38,24 +38,27 @@ class MovieDetailPage extends StatelessWidget {
                               height: 270,
                               margin: EdgeInsets.only(bottom: 16),
                               decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(imageBaseURL +
-                                      'w1280' +
-                                      movie.backdropPath),
-                                ),
+                                color: Colors.blueGrey[100],
+                                image: (movie.backdropPath == null)
+                                    ? null
+                                    : DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(imageBaseURL +
+                                            'w1280' +
+                                            movie.backdropPath),
+                                      ),
                               ),
-                              child: Container(
-                                height: 271,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin: Alignment(0, 1),
-                                    end: Alignment(0, 0.06),
-                                    colors: [
-                                      Colors.white,
-                                      Colors.transparent,
-                                    ],
-                                  ),
+                            ),
+                            Container(
+                              height: 271,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment(0, 1),
+                                  end: Alignment(0, 0.06),
+                                  colors: [
+                                    Colors.white,
+                                    Colors.white.withOpacity(0),
+                                  ],
                                 ),
                               ),
                             ),

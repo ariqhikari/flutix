@@ -51,6 +51,7 @@ class MoviePage extends StatelessWidget {
                               width: 50,
                               height: 50,
                               decoration: BoxDecoration(
+                                color: Colors.blueGrey[100],
                                 shape: BoxShape.circle,
                                 image: DecorationImage(
                                   fit: BoxFit.cover,

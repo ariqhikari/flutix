@@ -120,6 +120,9 @@ class _TopUpPageState extends State<TopUpPage> {
                       child: BlocBuilder<UserBloc, UserState>(
                         builder: (_, userState) => RaisedButton(
                             elevation: 0,
+                            focusElevation: 0,
+                            highlightElevation: 0,
+                            hoverElevation: 0,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
                             child: Text(

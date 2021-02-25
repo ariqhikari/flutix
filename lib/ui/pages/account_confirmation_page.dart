@@ -61,6 +61,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                     height: 150,
                     margin: EdgeInsets.only(top: 90, bottom: 20),
                     decoration: BoxDecoration(
+                      color: Colors.blueGrey[100],
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         fit: BoxFit.cover,

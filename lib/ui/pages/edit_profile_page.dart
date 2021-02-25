@@ -60,18 +60,21 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         child: Stack(
                           children: <Widget>[
                             Container(
-                                width: 90,
-                                height: 90,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                        image: (profileImageFile != null)
-                                            ? FileImage(profileImageFile)
-                                            : (profilePath != "")
-                                                ? NetworkImage(profilePath)
-                                                : AssetImage(
-                                                    "assets/user_pic.png"),
-                                        fit: BoxFit.cover))),
+                              width: 90,
+                              height: 90,
+                              decoration: BoxDecoration(
+                                color: Colors.blueGrey[100],
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: (profileImageFile != null)
+                                      ? FileImage(profileImageFile)
+                                      : (profilePath != "")
+                                          ? NetworkImage(profilePath)
+                                          : AssetImage("assets/user_pic.png"),
+                                ),
+                              ),
+                            ),
                             Align(
                               alignment: Alignment.bottomCenter,
                               child: GestureDetector(
