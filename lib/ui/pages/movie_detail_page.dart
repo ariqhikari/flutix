@@ -2,8 +2,9 @@ part of 'pages.dart';
 
 class MovieDetailPage extends StatelessWidget {
   final Movie movie;
+  final bool isNowPlaying;
 
-  MovieDetailPage(this.movie);
+  MovieDetailPage(this.movie, {this.isNowPlaying = true});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +19,7 @@ class MovieDetailPage extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: [
-            Container(color: accentColor1),
-            SafeArea(child: Container(color: Colors.white)),
+            Container(color: Colors.white),
             ListView(
               children: [
                 FutureBuilder(
@@ -168,30 +168,32 @@ class MovieDetailPage extends StatelessWidget {
                           ),
                         ),
                         // * Next Button
-                        Container(
-                          width: 250,
-                          height: 45,
-                          margin: EdgeInsets.only(bottom: 40),
-                          child: RaisedButton(
-                            elevation: 0,
-                            focusElevation: 0,
-                            highlightElevation: 0,
-                            hoverElevation: 0,
-                            child: Text(
-                              'Continue To Book',
-                              style: whiteTextFont.copyWith(fontSize: 16),
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            color: mainColor,
-                            onPressed: () {
-                              context
-                                  .bloc<PageBloc>()
-                                  .add(GoToSchedulePage(movieDetail));
-                            },
-                          ),
-                        ),
+                        (isNowPlaying)
+                            ? Container(
+                                width: 250,
+                                height: 45,
+                                margin: EdgeInsets.only(bottom: 40),
+                                child: RaisedButton(
+                                  elevation: 0,
+                                  focusElevation: 0,
+                                  highlightElevation: 0,
+                                  hoverElevation: 0,
+                                  child: Text(
+                                    'Continue To Book',
+                                    style: whiteTextFont.copyWith(fontSize: 16),
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  color: mainColor,
+                                  onPressed: () {
+                                    context
+                                        .bloc<PageBloc>()
+                                        .add(GoToSchedulePage(movieDetail));
+                                  },
+                                ),
+                              )
+                            : SizedBox(),
                       ],
                     );
                   },

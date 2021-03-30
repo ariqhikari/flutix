@@ -18,262 +18,260 @@ class TicketDetailPage extends StatelessWidget {
 
         return;
       },
-      child: Scaffold(
-          backgroundColor: Color(0xFFF6F7F9),
-          body: Container(
-            padding: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 0),
-            child: ListView(
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Stack(
-                      children: <Widget>[
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: GestureDetector(
-                            onTap: () {
-                              context.bloc<PageBloc>().add(GoToMainPage(
-                                  bottomNavBarIndex: 1,
-                                  isExpired:
-                                      ticket.time.isBefore(DateTime.now())));
-                            },
-                            child: Icon(
-                              Icons.arrow_back,
-                              color: Colors.black,
-                            ),
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle(
+          statusBarIconBrightness: Brightness.dark,
+          statusBarColor: Color(0xFFF6F7F9),
+        ),
+        child: Scaffold(
+            body: Container(
+          padding: EdgeInsets.fromLTRB(defaultMargin, 0, defaultMargin, 0),
+          color: Color(0xFFF6F7F9),
+          child: ListView(
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Stack(
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: GestureDetector(
+                          onTap: () {
+                            context.bloc<PageBloc>().add(GoToMainPage(
+                                bottomNavBarIndex: 1,
+                                isExpired:
+                                    ticket.time.isBefore(DateTime.now())));
+                          },
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: Colors.black,
                           ),
                         ),
-                        Center(
-                          child: Text(
-                            "Ticket Details",
-                            style: blackTextFont.copyWith(fontSize: 20),
+                      ),
+                      Center(
+                        child: Text(
+                          "Ticket Details",
+                          style: blackTextFont.copyWith(fontSize: 20),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 20),
+                    height: 170,
+                    decoration: BoxDecoration(
+                      color: Colors.blueGrey[100],
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
+                      ),
+                      image: (ticket.movieDetail.backdropPath == null)
+                          ? null
+                          : DecorationImage(
+                              image: NetworkImage(imageBaseURL +
+                                  "w500" +
+                                  ticket.movieDetail.backdropPath),
+                              fit: BoxFit.cover),
+                    ),
+                  ),
+                  ClipPath(
+                    clipper: TicketTopClipper(),
+                    child: Container(
+                      width: double.infinity,
+                      color: Colors.white,
+                      padding: EdgeInsets.fromLTRB(20, 16, 20, 0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            ticket.movieDetail.title,
+                            maxLines: 2,
+                            overflow: TextOverflow.clip,
+                            style: blackTextFont.copyWith(fontSize: 18),
                           ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 20),
-                      height: 170,
-                      decoration: BoxDecoration(
-                        color: Colors.blueGrey[100],
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12),
-                        ),
-                        image: (ticket.movieDetail.backdropPath == null)
-                            ? null
-                            : DecorationImage(
-                                image: NetworkImage(imageBaseURL +
-                                    "w500" +
-                                    ticket.movieDetail.backdropPath),
-                                fit: BoxFit.cover),
+                          SizedBox(
+                            height: 6,
+                          ),
+                          Text(
+                            ticket.movieDetail.genresAndLanguage,
+                            style: greyTextFont.copyWith(
+                                fontSize: 12, fontWeight: FontWeight.w400),
+                          ),
+                          SizedBox(
+                            height: 6,
+                          ),
+                          RatingStars(
+                              voteAverage: ticket.movieDetail.voteAverage),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                "Cinema",
+                                style: greyTextFont.copyWith(
+                                    fontSize: 16, fontWeight: FontWeight.w400),
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.45,
+                                child: Text(
+                                  ticket.theater.name,
+                                  textAlign: TextAlign.end,
+                                  style: whiteNumberFont.copyWith(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 9,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                "Date & Time",
+                                style: greyTextFont.copyWith(
+                                    fontSize: 16, fontWeight: FontWeight.w400),
+                              ),
+                              Text(
+                                ticket.time.dateAndTime,
+                                style: whiteNumberFont.copyWith(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 9,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                "Seat Numbers",
+                                style: greyTextFont.copyWith(
+                                    fontSize: 16, fontWeight: FontWeight.w400),
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.45,
+                                child: Text(
+                                  ticket.seatsInString,
+                                  textAlign: TextAlign.end,
+                                  style: whiteNumberFont.copyWith(
+                                      color: Colors.black,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 9,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                "Order ID",
+                                style: greyTextFont.copyWith(
+                                    fontSize: 16, fontWeight: FontWeight.w400),
+                              ),
+                              Text(
+                                ticket.bookingCode,
+                                style: whiteNumberFont.copyWith(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          generateDashedDivider(
+                              MediaQuery.of(context).size.width -
+                                  2 * defaultMargin -
+                                  40)
+                        ],
                       ),
                     ),
-                    ClipPath(
-                      clipper: TicketTopClipper(),
-                      child: Container(
-                        width: double.infinity,
-                        color: Colors.white,
-                        padding: EdgeInsets.fromLTRB(20, 16, 20, 0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              ticket.movieDetail.title,
-                              maxLines: 2,
-                              overflow: TextOverflow.clip,
-                              style: blackTextFont.copyWith(fontSize: 18),
-                            ),
-                            SizedBox(
-                              height: 6,
-                            ),
-                            Text(
-                              ticket.movieDetail.genresAndLanguage,
-                              style: greyTextFont.copyWith(
-                                  fontSize: 12, fontWeight: FontWeight.w400),
-                            ),
-                            SizedBox(
-                              height: 6,
-                            ),
-                            RatingStars(
-                                voteAverage: ticket.movieDetail.voteAverage),
-                            SizedBox(
-                              height: 16,
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(
-                                  "Cinema",
-                                  style: greyTextFont.copyWith(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.45,
-                                  child: Text(
-                                    ticket.theater.name,
-                                    textAlign: TextAlign.end,
-                                    style: whiteNumberFont.copyWith(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 9,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(
-                                  "Date & Time",
-                                  style: greyTextFont.copyWith(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                Text(
-                                  ticket.time.dateAndTime,
-                                  style: whiteNumberFont.copyWith(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 9,
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(
-                                  "Seat Numbers",
-                                  style: greyTextFont.copyWith(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.45,
-                                  child: Text(
-                                    ticket.seatsInString,
-                                    textAlign: TextAlign.end,
-                                    style: whiteNumberFont.copyWith(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 9,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(
-                                  "Order ID",
-                                  style: greyTextFont.copyWith(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                Text(
-                                  ticket.bookingCode,
-                                  style: whiteNumberFont.copyWith(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            generateDashedDivider(
-                                MediaQuery.of(context).size.width -
-                                    2 * defaultMargin -
-                                    40)
-                          ],
-                        ),
+                  ),
+                  ClipPath(
+                    clipper: TicketBottomClipper(),
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.fromLTRB(20, 16, 20, 16),
+                      color: Colors.white,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                "Name: ",
+                                style: greyTextFont.copyWith(
+                                    fontSize: 16, fontWeight: FontWeight.w400),
+                              ),
+                              Text(
+                                ticket.name,
+                                style: whiteNumberFont.copyWith(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                "Paid: ",
+                                style: greyTextFont.copyWith(
+                                    fontSize: 16, fontWeight: FontWeight.w400),
+                              ),
+                              Text(
+                                NumberFormat.currency(
+                                        locale: "id_ID",
+                                        decimalDigits: 0,
+                                        symbol: "IDR ")
+                                    .format(ticket.totalPrice),
+                                style: whiteNumberFont.copyWith(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ],
+                          ),
+                          QrImage(
+                            version: 6,
+                            foregroundColor: Colors.black,
+                            errorCorrectionLevel: QrErrorCorrectLevel.M,
+                            padding: EdgeInsets.all(0),
+                            size: 100,
+                            data: ticket.bookingCode,
+                          )
+                        ],
                       ),
                     ),
-                    ClipPath(
-                      clipper: TicketBottomClipper(),
-                      child: Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.fromLTRB(20, 16, 20, 16),
-                        color: Colors.white,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "Name: ",
-                                  style: greyTextFont.copyWith(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                Text(
-                                  ticket.name,
-                                  style: whiteNumberFont.copyWith(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                Text(
-                                  "Paid: ",
-                                  style: greyTextFont.copyWith(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                Text(
-                                  NumberFormat.currency(
-                                          locale: "id_ID",
-                                          decimalDigits: 0,
-                                          symbol: "IDR ")
-                                      .format(ticket.totalPrice),
-                                  style: whiteNumberFont.copyWith(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            ),
-                            QrImage(
-                              version: 6,
-                              foregroundColor: Colors.black,
-                              errorCorrectionLevel: QrErrorCorrectLevel.M,
-                              padding: EdgeInsets.all(0),
-                              size: 100,
-                              data: ticket.bookingCode,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 50,
-                    )
-                  ],
-                )
-              ],
-            ),
-          )),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  )
+                ],
+              )
+            ],
+          ),
+        )),
+      ),
     );
   }
 }

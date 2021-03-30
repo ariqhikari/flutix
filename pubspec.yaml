@@ -1,5 +1,5 @@
-name: bwa_flutix
-description: A new Flutter project.
+name: flutix
+description: Flutix is a mobile application that helps people to buy movie tickets online.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -18,25 +18,26 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: ">=2.10.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  cloud_firestore: ^0.13.4+2
+  cloud_firestore: ^0.14.0+2
   cupertino_icons: ^1.0.0
   email_validator: ^1.0.4
-  equatable: ^1.1.1
-  firebase_auth: ^0.15.5+3
-  firebase_storage: ^3.1.5
-  flushbar: ^1.10.0
-  flutter_bloc: ^3.2.0
+  equatable: ^1.2.6
+  firebase_auth: ^0.18.0+1
+  firebase_core: ^0.5.0
+  firebase_storage: ^4.0.0
+  flushbar: ^1.10.4
+  flutter_bloc: ^6.1.2
   flutter_spinkit: ^4.1.2+1
   google_fonts: ^0.3.10
   http: ^0.12.0+4
   image_picker: ^0.6.4
   intl: ^0.16.1
-  material_design_icons_flutter: ^4.0.5045
+  material_design_icons_flutter: ^4.0.5855
   provider: ^4.0.4
   qr_flutter: ^3.2.0
   random_string: ^2.0.1

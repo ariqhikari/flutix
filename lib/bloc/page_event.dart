@@ -56,8 +56,9 @@ class GoToMainPage extends PageEvent {
 
 class GoToMovieDetailPage extends PageEvent {
   final Movie movie;
+  final bool isNowPlaying;
 
-  GoToMovieDetailPage(this.movie);
+  GoToMovieDetailPage(this.movie, {this.isNowPlaying = true});
 
   @override
   List<Object> get props => [movie];

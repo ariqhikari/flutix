@@ -1,16 +1,15 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:bwa_flutix/models/models.dart';
-import 'package:bwa_flutix/services/services.dart';
+import 'package:flutix/models/models.dart';
+import 'package:flutix/services/services.dart';
 import 'package:equatable/equatable.dart';
 
 part 'user_event.dart';
 part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
-  @override
-  UserState get initialState => UserInitial();
+  UserBloc() : super(UserInitial());
 
   @override
   Stream<UserState> mapEventToState(

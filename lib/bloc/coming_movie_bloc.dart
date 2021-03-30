@@ -1,16 +1,15 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:bwa_flutix/models/models.dart';
-import 'package:bwa_flutix/services/services.dart';
+import 'package:flutix/models/models.dart';
+import 'package:flutix/services/services.dart';
 import 'package:equatable/equatable.dart';
 
 part 'coming_movie_event.dart';
 part 'coming_movie_state.dart';
 
 class ComingMovieBloc extends Bloc<ComingMovieEvent, ComingMovieState> {
-  @override
-  ComingMovieState get initialState => ComingMovieInitial();
+  ComingMovieBloc() : super(ComingMovieInitial());
 
   @override
   Stream<ComingMovieState> mapEventToState(

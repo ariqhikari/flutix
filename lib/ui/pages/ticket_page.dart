@@ -142,7 +142,7 @@ class TicketViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     var sortedTickets = tickets;
     sortedTickets
-        .sort((ticket1, ticket2) => ticket1.time.compareTo(ticket2.time));
+        .sort((ticket1, ticket2) => ticket2.time.compareTo(ticket1.time));
 
     return ListView.builder(
       itemCount: sortedTickets.length,

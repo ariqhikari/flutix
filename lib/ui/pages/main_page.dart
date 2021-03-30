@@ -24,54 +24,59 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Container(color: accentColor1),
-          SafeArea(child: Container(color: Color(0xFFF6F7F9))),
-          PageView(
-            controller: pageController,
-            onPageChanged: (index) {
-              setState(() {
-                bottomNavbarIndex = index;
-              });
-            },
-            children: [
-              MoviePage(),
-              TicketPage(isExpiredTicket: widget.isExpired),
-            ],
-          ),
-          createCustomBottomNavbar(),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              width: 46,
-              height: 46,
-              margin: EdgeInsets.only(bottom: 42),
-              child: FloatingActionButton(
-                elevation: 0,
-                focusElevation: 0,
-                highlightElevation: 0,
-                hoverElevation: 0,
-                backgroundColor: accentColor2,
-                child: Container(
-                  width: 26,
-                  height: 26,
-                  margin: EdgeInsets.all(10),
-                  child: Icon(
-                    MdiIcons.walletPlus,
-                    color: Colors.black.withOpacity(0.54),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.light,
+        statusBarColor: accentColor1,
+      ),
+      child: Scaffold(
+        body: Stack(
+          children: [
+            Container(color: Color(0xFFF6F7F9)),
+            PageView(
+              controller: pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  bottomNavbarIndex = index;
+                });
+              },
+              children: [
+                MoviePage(),
+                TicketPage(isExpiredTicket: widget.isExpired),
+              ],
+            ),
+            createCustomBottomNavbar(),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: 46,
+                height: 46,
+                margin: EdgeInsets.only(bottom: 42),
+                child: FloatingActionButton(
+                  elevation: 0,
+                  focusElevation: 0,
+                  highlightElevation: 0,
+                  hoverElevation: 0,
+                  backgroundColor: accentColor2,
+                  child: Container(
+                    width: 26,
+                    height: 26,
+                    margin: EdgeInsets.all(10),
+                    child: Icon(
+                      MdiIcons.walletPlus,
+                      color: Colors.black.withOpacity(0.54),
+                    ),
                   ),
+                  onPressed: () {
+                    context
+                        .bloc<PageBloc>()
+                        .add(GoToTopUpPage(GoToMainPage(bottomNavBarIndex: 0)));
+                  },
                 ),
-                onPressed: () {
-                  context
-                      .bloc<PageBloc>()
-                      .add(GoToTopUpPage(GoToMainPage(bottomNavBarIndex: 0)));
-                },
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

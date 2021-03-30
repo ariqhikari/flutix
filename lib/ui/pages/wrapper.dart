@@ -3,7 +3,7 @@ part of 'pages.dart';
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    FirebaseUser firebaseUser = Provider.of<FirebaseUser>(context);
+    auth.User firebaseUser = Provider.of<auth.User>(context);
 
     if (firebaseUser == null) {
       if (!(prevPageEvent is GoToSplashPage)) {
@@ -32,7 +32,8 @@ class Wrapper extends StatelessWidget {
                       : (pageState is OnAccountConfirmationPage)
                           ? AccountConfirmationPage(pageState.registrationData)
                           : (pageState is OnMovieDetailPage)
-                              ? MovieDetailPage(pageState.movie)
+                              ? MovieDetailPage(pageState.movie,
+                                  isNowPlaying: pageState.isNowPlaying)
                               : (pageState is OnSchedulePage)
                                   ? SchedulePage(pageState.movieDetail)
                                   : (pageState is OnSeatPage)

@@ -2,10 +2,10 @@ part of 'services.dart';
 
 class TicketServices {
   static CollectionReference _ticketCollection =
-      Firestore.instance.collection('tickets');
+      FirebaseFirestore.instance.collection('tickets');
 
   static Future<void> saveTicket(String id, Ticket ticket) async {
-    await _ticketCollection.document().setData({
+    await _ticketCollection.doc().set({
       'movieID': ticket.movieDetail.id ?? '',
       'userID': id ?? '',
       'theaterName': ticket.theater.name ?? 0,
@@ -19,26 +19,26 @@ class TicketServices {
   }
 
   static Future<List<Ticket>> getTickets(String userID) async {
-    QuerySnapshot snapshot = await _ticketCollection.getDocuments();
-    var documents = snapshot.documents
-        .where((document) => document.data['userID'] == userID);
+    QuerySnapshot snapshot = await _ticketCollection.get();
+    var documents =
+        snapshot.docs.where((document) => document.data()['userID'] == userID);
 
     List<Ticket> tickets = [];
 
     for (var document in documents) {
       MovieDetail movieDetail = await MovieServices.getDetailsMovie(
         null,
-        movieID: document.data['movieID'],
+        movieID: document.data()['movieID'],
       );
 
       tickets.add(Ticket(
         movieDetail,
-        Theater(document.data['theaterName']),
-        DateTime.fromMillisecondsSinceEpoch(document.data['time']),
-        document.data['bookingCode'],
-        document.data['seats'].toString().split(','),
-        document.data['name'],
-        document.data['totalPrice'],
+        Theater(document.data()['theaterName']),
+        DateTime.fromMillisecondsSinceEpoch(document.data()['time']),
+        document.data()['bookingCode'],
+        document.data()['seats'].toString().split(','),
+        document.data()['name'],
+        document.data()['totalPrice'],
       ));
     }
 

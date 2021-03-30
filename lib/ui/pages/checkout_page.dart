@@ -20,9 +20,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
         return;
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+          color: Colors.white,
           child: ListView(
             children: [
               BlocBuilder<UserBloc, UserState>(

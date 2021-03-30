@@ -32,98 +32,106 @@ class _SchedulePageState extends State<SchedulePage> {
         context.bloc<PageBloc>().add(GoToMovieDetailPage(widget.movieDetail));
         return;
       },
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-          child: ListView(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // * Arrow
-                  Container(
-                    margin: EdgeInsets.only(top: 36, bottom: 20),
-                    child: GestureDetector(
-                      child: Icon(Icons.arrow_back, color: Colors.black),
-                      onTap: () {
-                        context
-                            .bloc<PageBloc>()
-                            .add(GoToMovieDetailPage(widget.movieDetail));
-                      },
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle(
+          statusBarIconBrightness: Brightness.dark,
+          statusBarColor: Colors.white,
+        ),
+        child: Scaffold(
+          body: Container(
+            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+            color: Colors.white,
+            child: ListView(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // * Arrow
+                    Container(
+                      margin: EdgeInsets.only(top: 36, bottom: 20),
+                      child: GestureDetector(
+                        child: Icon(Icons.arrow_back, color: Colors.black),
+                        onTap: () {
+                          context
+                              .bloc<PageBloc>()
+                              .add(GoToMovieDetailPage(widget.movieDetail));
+                        },
+                      ),
                     ),
-                  ),
-                  // * Choose Date
-                  Text(
-                    'Choose Date',
-                    style: blackTextFont.copyWith(fontSize: 20),
-                  ),
-                  SizedBox(height: 16),
-                  Container(
-                    height: 90,
-                    margin: EdgeInsets.only(bottom: 24),
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: dates.length,
-                      itemBuilder: (_, index) => Container(
-                        margin: EdgeInsets.only(right: 16),
-                        child: DateCard(
-                          dates[index],
-                          isSelected: selectedDate == dates[index],
-                          onTap: () {
-                            setState(() {
-                              selectedDate = dates[index];
-                            });
-                          },
+                    // * Choose Date
+                    Text(
+                      'Choose Date',
+                      style: blackTextFont.copyWith(fontSize: 20),
+                    ),
+                    SizedBox(height: 16),
+                    Container(
+                      height: 90,
+                      margin: EdgeInsets.only(bottom: 24),
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: dates.length,
+                        itemBuilder: (_, index) => Container(
+                          margin: EdgeInsets.only(right: 16),
+                          child: DateCard(
+                            dates[index],
+                            isSelected: selectedDate == dates[index],
+                            onTap: () {
+                              setState(() {
+                                selectedDate = dates[index];
+                              });
+                            },
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  // * Theater
-                  generateTimeTable(context),
-                  SizedBox(height: 30),
-                  // * Next Button
-                  Center(
-                    child: BlocBuilder<UserBloc, UserState>(
-                      builder: (_, userState) => FloatingActionButton(
-                        elevation: 0,
-                        focusElevation: 0,
-                        highlightElevation: 0,
-                        hoverElevation: 0,
-                        backgroundColor:
-                            (isValid) ? mainColor : Color(0xFFE4E4E4),
-                        child: Icon(
-                          Icons.arrow_forward,
-                          color: (isValid) ? Colors.white : Color(0xFFBEBEBE),
+                    // * Theater
+                    generateTimeTable(context),
+                    SizedBox(height: 30),
+                    // * Next Button
+                    Center(
+                      child: BlocBuilder<UserBloc, UserState>(
+                        builder: (_, userState) => FloatingActionButton(
+                          elevation: 0,
+                          focusElevation: 0,
+                          highlightElevation: 0,
+                          hoverElevation: 0,
+                          backgroundColor:
+                              (isValid) ? mainColor : Color(0xFFE4E4E4),
+                          child: Icon(
+                            Icons.arrow_forward,
+                            color: (isValid) ? Colors.white : Color(0xFFBEBEBE),
+                          ),
+                          onPressed: (isValid)
+                              ? () {
+                                  context.bloc<PageBloc>().add(
+                                        GoToSeatPage(
+                                          Ticket(
+                                              widget.movieDetail,
+                                              selectedTheater,
+                                              DateTime(
+                                                  selectedDate.year,
+                                                  selectedDate.month,
+                                                  selectedDate.day,
+                                                  selectedTime),
+                                              randomAlphaNumeric(12)
+                                                  .toUpperCase(),
+                                              [],
+                                              (userState as UserLoaded)
+                                                  .user
+                                                  .name,
+                                              null),
+                                        ),
+                                      );
+                                }
+                              : null,
                         ),
-                        onPressed: (isValid)
-                            ? () {
-                                context.bloc<PageBloc>().add(
-                                      GoToSeatPage(
-                                        Ticket(
-                                            widget.movieDetail,
-                                            selectedTheater,
-                                            DateTime(
-                                                selectedDate.year,
-                                                selectedDate.month,
-                                                selectedDate.day,
-                                                selectedTime),
-                                            randomAlphaNumeric(12)
-                                                .toUpperCase(),
-                                            [],
-                                            (userState as UserLoaded).user.name,
-                                            null),
-                                      ),
-                                    );
-                              }
-                            : null,
                       ),
                     ),
-                  ),
-                  SizedBox(height: 50),
-                ],
-              ),
-            ],
+                    SizedBox(height: 50),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

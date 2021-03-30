@@ -36,11 +36,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
         return;
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: Stack(
           children: <Widget>[
             Container(
               padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+              color: Colors.white,
               child: ListView(
                 children: <Widget>[
                   Column(

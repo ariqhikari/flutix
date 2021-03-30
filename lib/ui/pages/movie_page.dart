@@ -119,7 +119,10 @@ class MoviePage extends StatelessWidget {
                 margin: EdgeInsets.only(top: 30, bottom: 12),
                 child: Text(
                   'Now Playing',
-                  style: blackTextFont.copyWith(fontSize: 16),
+                  style: blackTextFont.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               Container(
@@ -157,7 +160,10 @@ class MoviePage extends StatelessWidget {
                 margin: EdgeInsets.only(top: 30, bottom: 12),
                 child: Text(
                   'Browse Movie',
-                  style: blackTextFont.copyWith(fontSize: 16),
+                  style: blackTextFont.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               BlocBuilder<UserBloc, UserState>(builder: (_, userState) {
@@ -182,7 +188,10 @@ class MoviePage extends StatelessWidget {
                 margin: EdgeInsets.only(top: 30, bottom: 12),
                 child: Text(
                   'Coming Soon',
-                  style: blackTextFont.copyWith(fontSize: 16),
+                  style: blackTextFont.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               Container(
@@ -190,12 +199,22 @@ class MoviePage extends StatelessWidget {
                 child: BlocBuilder<ComingMovieBloc, ComingMovieState>(
                     builder: (_, movieState) {
                   if (movieState is ComingMovieLoaded) {
+                    List<Movie> movies = movieState.movies;
+
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: movieState.movies.length,
+                      itemCount: movies.length,
                       itemBuilder: (_, index) => Container(
                         margin: EdgeInsets.only(right: 16),
-                        child: ComingSoonCard(movieState.movies[index]),
+                        child: ComingSoonCard(
+                          movies[index],
+                          onTap: () {
+                            context.bloc<PageBloc>().add(
+                                  GoToMovieDetailPage(movies[index],
+                                      isNowPlaying: false),
+                                );
+                          },
+                        ),
                       ),
                     );
                   } else {
@@ -211,7 +230,10 @@ class MoviePage extends StatelessWidget {
                 margin: EdgeInsets.only(top: 30, bottom: 12),
                 child: Text(
                   'Get Lucky Day',
-                  style: blackTextFont.copyWith(fontSize: 16),
+                  style: blackTextFont.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               Container(

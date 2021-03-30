@@ -13,9 +13,9 @@ class SuccessPage extends StatelessWidget {
         return;
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+          color: Colors.white,
           child: FutureBuilder(
             future: ticket != null
                 ? processingTicketOrder(context)

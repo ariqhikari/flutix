@@ -1,15 +1,14 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:bwa_flutix/models/models.dart';
+import 'package:flutix/models/models.dart';
 import 'package:equatable/equatable.dart';
 
 part 'page_event.dart';
 part 'page_state.dart';
 
 class PageBloc extends Bloc<PageEvent, PageState> {
-  @override
-  PageState get initialState => OnInitialPage();
+  PageBloc() : super(OnInitialPage());
 
   @override
   Stream<PageState> mapEventToState(
@@ -30,7 +29,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
           bottomNavBarIndex: event.bottomNavBarIndex,
           isExpired: event.isExpired);
     } else if (event is GoToMovieDetailPage) {
-      yield (OnMovieDetailPage(event.movie));
+      yield (OnMovieDetailPage(event.movie, isNowPlaying: event.isNowPlaying));
     } else if (event is GoToSchedulePage) {
       yield (OnSchedulePage(event.movieDetail));
     } else if (event is GoToSeatPage) {

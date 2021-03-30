@@ -1,16 +1,60 @@
-# bwa_flutix
+<p align="center"><a href="https://play.google.com/store/apps/details?id=com.ariqhh.flutix"><img src="https://raw.githubusercontent.com/ariqhikari/flutix/main/github/logo.png" width="150"></a></p>
 
-A new Flutter project.
+## About Flutix
 
-## Getting Started
+Flutix is a mobile application (IOS & Android) that helps people to buy movie tickets online through their respective cellphones. Flutix also uses a **data collection** method to display movies that match the user's profile.
 
-This project is a starting point for a Flutter application.
+<p align="center"><a href="https://play.google.com/store/apps/details?id=com.ariqhh.flutix"><img src="https://raw.githubusercontent.com/ariqhikari/flutix/main/github/mockup.jpg"></a></p>
 
-A few resources to get you started if this is your first Flutter project:
+## Table of contents
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
++ [Demo](#demo)
++ [Features](#features)
++ [Technology](#technology)
++ [Installation](#installation)
++ [License](#license)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Demo
+
+Checkout the Demo [here](https://infoin.auroraweb.id/).
+
+## Features
+
+- Auth
+- User Management
+- Now Playing Movies
+- Select Cinema
+- Select Schedule
+- E-Wallet (for ticket transaction)
+- Data Collection (genre dan preferred language)
+
+## Technology
+
+- [Dart](https://dart.dev/)
+- [Flutter](https://flutter.dev/)
+- [Firebase](https://firebase.google.com/)
+
+## Installation
+
+Clone the repo:
+```shell
+git clone https://github.com/ariqhikari/flutix.git
+cd flutix
+```
+
+Get [**Movie API**](https://developers.themoviedb.org/3/getting-started/introduction)
+
+Put API Key in **lib/shared/shared_value.dart**
+```shell
+String apiKEY = "<YOUR_API_KEY_HERE>";
+```
+
+After that, run your application:
+```shell
+flutter packages get
+flutter run
+```
+
+## License
+
+The project is under the [MIT license](https://github.com/ariqhikari/flutix/blob/main/LICENSE).

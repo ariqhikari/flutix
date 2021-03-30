@@ -1,7 +1,7 @@
 part of 'services.dart';
 
 class AuthServices {
-  static FirebaseAuth _auth = FirebaseAuth.instance;
+  static auth.FirebaseAuth _auth = auth.FirebaseAuth.instance;
 
   static Future<SignInSignUpResult> signUp(
     String email,
@@ -11,7 +11,7 @@ class AuthServices {
     String selectedLanguage,
   ) async {
     try {
-      AuthResult result = await _auth.createUserWithEmailAndPassword(
+      auth.UserCredential result = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -35,7 +35,7 @@ class AuthServices {
     String password,
   ) async {
     try {
-      AuthResult result = await _auth.signInWithEmailAndPassword(
+      auth.UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
 
       User user = await result.user.fromFireStore();
@@ -54,7 +54,7 @@ class AuthServices {
     await _auth.sendPasswordResetEmail(email: email);
   }
 
-  static Stream<FirebaseUser> get userStream => _auth.onAuthStateChanged;
+  static Stream<auth.User> get userStream => _auth.authStateChanges();
 }
 
 class SignInSignUpResult {

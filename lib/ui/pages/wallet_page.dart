@@ -12,267 +12,283 @@ class WalletPage extends StatelessWidget {
         context.bloc<PageBloc>().add(pageEvent);
         return;
       },
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-          child: BlocBuilder<UserBloc, UserState>(
-            builder: (_, userState) {
-              if (userState is UserLoaded) {
-                User user = userState.user;
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle(
+          statusBarIconBrightness: Brightness.dark,
+          statusBarColor: Colors.white,
+        ),
+        child: Scaffold(
+          body: Container(
+            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+            color: Colors.white,
+            child: BlocBuilder<UserBloc, UserState>(
+              builder: (_, userState) {
+                if (userState is UserLoaded) {
+                  User user = userState.user;
 
-                return Stack(
-                  children: [
-                    // * Content
-                    ListView(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // * Arrow, Title Page
-                            Container(
-                              margin: EdgeInsets.only(top: 20, bottom: 20),
-                              child: Stack(
-                                children: [
-                                  // * Arrow
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: GestureDetector(
-                                      child: Icon(Icons.arrow_back,
-                                          color: Colors.black),
-                                      onTap: () {
-                                        context.bloc<PageBloc>().add(pageEvent);
-                                      },
+                  return Stack(
+                    children: [
+                      // * Content
+                      ListView(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // * Arrow, Title Page
+                              Container(
+                                margin: EdgeInsets.only(top: 20, bottom: 20),
+                                child: Stack(
+                                  children: [
+                                    // * Arrow
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: GestureDetector(
+                                        child: Icon(Icons.arrow_back,
+                                            color: Colors.black),
+                                        onTap: () {
+                                          context
+                                              .bloc<PageBloc>()
+                                              .add(pageEvent);
+                                        },
+                                      ),
                                     ),
-                                  ),
-                                  // * Title Page
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      'My Wallet',
-                                      textAlign: TextAlign.center,
-                                      style:
-                                          blackTextFont.copyWith(fontSize: 20),
+                                    // * Title Page
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        'My Wallet',
+                                        textAlign: TextAlign.center,
+                                        style: blackTextFont.copyWith(
+                                            fontSize: 20),
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            // * ID Card
-                            Container(
-                              height: 185,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: Color(0xFF382A74),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black26,
-                                    blurRadius: 10,
-                                    spreadRadius: 0,
-                                    offset: Offset(0, 5),
-                                  ),
-                                ],
-                              ),
-                              child: Stack(
-                                children: [
-                                  ClipPath(
-                                    clipper: CardReflectionClipper(15),
-                                    child: Container(
-                                      height: 185,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        gradient: LinearGradient(
-                                          begin: Alignment.bottomRight,
-                                          end: Alignment.topLeft,
-                                          colors: [
-                                            Colors.white.withOpacity(0.1),
-                                            Colors.white.withOpacity(0),
-                                          ],
+                              // * ID Card
+                              Container(
+                                height: 185,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Color(0xFF382A74),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black26,
+                                      blurRadius: 10,
+                                      spreadRadius: 0,
+                                      offset: Offset(0, 5),
+                                    ),
+                                  ],
+                                ),
+                                child: Stack(
+                                  children: [
+                                    ClipPath(
+                                      clipper: CardReflectionClipper(15),
+                                      child: Container(
+                                        height: 185,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          gradient: LinearGradient(
+                                            begin: Alignment.bottomRight,
+                                            end: Alignment.topLeft,
+                                            colors: [
+                                              Colors.white.withOpacity(0.1),
+                                              Colors.white.withOpacity(0),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.all(20),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                              width: 18,
-                                              height: 18,
-                                              margin: EdgeInsets.only(right: 4),
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: Color(0xFFFFF2CB),
+                                    Padding(
+                                      padding: EdgeInsets.all(20),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                width: 18,
+                                                height: 18,
+                                                margin:
+                                                    EdgeInsets.only(right: 4),
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Color(0xFFFFF2CB),
+                                                ),
                                               ),
-                                            ),
-                                            Container(
-                                              width: 30,
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                color: accentColor2,
+                                              Container(
+                                                width: 30,
+                                                height: 30,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: accentColor2,
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        Text(
-                                          NumberFormat.currency(
-                                            locale: 'id_ID',
-                                            decimalDigits: 0,
-                                            symbol: 'IDR ',
-                                          ).format(user.balance),
-                                          style: whiteNumberFont.copyWith(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 28,
+                                            ],
                                           ),
-                                        ),
-                                        Row(
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Card Holder',
-                                                  style: whiteTextFont.copyWith(
-                                                    fontWeight: FontWeight.w300,
-                                                    fontSize: 10,
-                                                  ),
-                                                ),
-                                                SizedBox(height: 4),
-                                                Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      user.name,
-                                                      style: whiteTextFont
-                                                          .copyWith(
-                                                        fontSize: 12,
-                                                      ),
-                                                    ),
-                                                    SizedBox(width: 4),
-                                                    SizedBox(
-                                                      width: 14,
-                                                      height: 14,
-                                                      child: Image.asset(
-                                                          'assets/ic_check.png'),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
+                                          Text(
+                                            NumberFormat.currency(
+                                              locale: 'id_ID',
+                                              decimalDigits: 0,
+                                              symbol: 'IDR ',
+                                            ).format(user.balance),
+                                            style: whiteNumberFont.copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 28,
                                             ),
-                                            SizedBox(width: 30),
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Card ID',
-                                                  style: whiteTextFont.copyWith(
-                                                    fontWeight: FontWeight.w300,
-                                                    fontSize: 10,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Card Holder',
+                                                    style:
+                                                        whiteTextFont.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                      fontSize: 10,
+                                                    ),
                                                   ),
-                                                ),
-                                                SizedBox(height: 4),
-                                                Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      user.id
-                                                          .substring(0, 10)
-                                                          .toUpperCase(),
-                                                      style: whiteNumberFont
-                                                          .copyWith(
-                                                        fontSize: 12,
+                                                  SizedBox(height: 4),
+                                                  Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        user.name,
+                                                        style: whiteTextFont
+                                                            .copyWith(
+                                                          fontSize: 12,
+                                                        ),
                                                       ),
+                                                      SizedBox(width: 4),
+                                                      SizedBox(
+                                                        width: 14,
+                                                        height: 14,
+                                                        child: Image.asset(
+                                                            'assets/ic_check.png'),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(width: 30),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Card ID',
+                                                    style:
+                                                        whiteTextFont.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                      fontSize: 10,
                                                     ),
-                                                    SizedBox(width: 4),
-                                                    SizedBox(
-                                                      width: 14,
-                                                      height: 14,
-                                                      child: Image.asset(
-                                                          'assets/ic_check.png'),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                                  ),
+                                                  SizedBox(height: 4),
+                                                  Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        user.id
+                                                            .substring(0, 10)
+                                                            .toUpperCase(),
+                                                        style: whiteNumberFont
+                                                            .copyWith(
+                                                          fontSize: 12,
+                                                        ),
+                                                      ),
+                                                      SizedBox(width: 4),
+                                                      SizedBox(
+                                                        width: 14,
+                                                        height: 14,
+                                                        child: Image.asset(
+                                                            'assets/ic_check.png'),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 20),
-                            // * Transactions
-                            Text(
-                              'Recent Transactions',
-                              style: blackTextFont.copyWith(fontSize: 14),
-                            ),
-                            SizedBox(height: 12),
-                            FutureBuilder(
-                              future: FlutixTransactionServices.getTransactions(
-                                  user.id),
-                              builder: (_, snapshot) {
-                                if (snapshot.hasData) {
-                                  return generateTransactionList(
-                                      context, snapshot.data);
-                                } else {
-                                  return SpinKitFadingCircle(
-                                    color: mainColor,
-                                    size: 50,
-                                  );
-                                }
-                              },
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    // * Button
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        width: 250,
-                        height: 45,
-                        margin: EdgeInsets.only(bottom: 40),
-                        child: RaisedButton(
-                          elevation: 0,
-                          focusElevation: 0,
-                          highlightElevation: 0,
-                          hoverElevation: 0,
-                          child: Text(
-                            'Top Up My Wallet',
-                            style: whiteTextFont.copyWith(fontSize: 16),
+                              SizedBox(height: 20),
+                              // * Transactions
+                              Text(
+                                'Recent Transactions',
+                                style: blackTextFont.copyWith(fontSize: 14),
+                              ),
+                              SizedBox(height: 12),
+                              FutureBuilder(
+                                future:
+                                    FlutixTransactionServices.getTransactions(
+                                        user.id),
+                                builder: (_, snapshot) {
+                                  if (snapshot.hasData) {
+                                    return generateTransactionList(
+                                        context, snapshot.data);
+                                  } else {
+                                    return SpinKitFadingCircle(
+                                      color: mainColor,
+                                      size: 50,
+                                    );
+                                  }
+                                },
+                              ),
+                            ],
                           ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                        ],
+                      ),
+                      // * Button
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          width: 250,
+                          height: 45,
+                          margin: EdgeInsets.only(bottom: 40),
+                          child: RaisedButton(
+                            elevation: 0,
+                            focusElevation: 0,
+                            highlightElevation: 0,
+                            hoverElevation: 0,
+                            child: Text(
+                              'Top Up My Wallet',
+                              style: whiteTextFont.copyWith(fontSize: 16),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            color: mainColor,
+                            onPressed: () {
+                              context.bloc<PageBloc>().add(
+                                  GoToTopUpPage(GoToWalletPage(pageEvent)));
+                            },
                           ),
-                          color: mainColor,
-                          onPressed: () {
-                            context
-                                .bloc<PageBloc>()
-                                .add(GoToTopUpPage(GoToWalletPage(pageEvent)));
-                          },
                         ),
                       ),
-                    ),
-                  ],
-                );
-              }
-            },
+                    ],
+                  );
+                }
+              },
+            ),
           ),
         ),
       ),

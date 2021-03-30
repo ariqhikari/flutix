@@ -61,11 +61,12 @@ class OnMainPage extends PageState {
 
 class OnMovieDetailPage extends PageState {
   final Movie movie;
+  final bool isNowPlaying;
 
-  OnMovieDetailPage(this.movie);
+  OnMovieDetailPage(this.movie, {this.isNowPlaying = true});
 
   @override
-  List<Object> get props => [movie];
+  List<Object> get props => [movie, isNowPlaying];
 }
 
 class OnSchedulePage extends PageState {
