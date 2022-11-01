@@ -16,7 +16,7 @@ Flutix is a mobile application (IOS & Android) that helps people to buy movie ti
 
 ## Demo
 
-Checkout the Demo [here](play.google.com/store/apps/details?id=com.ariqhh.flutix).
+Checkout the Demo [here](https://play.google.com/store/apps/details?id=com.ariqhh.flutix).
 
 ## Features
 
